@@ -2,6 +2,7 @@ import React from "react";
 import "../assets/css/paper-dashboard.css";
 import ButtonEmpleado from "../components/Empleado/ButtonEmpleado.jsx";
 import FormEmpleado from "../components/Empleado/FormEmpleado.jsx";
+import ListaEmpleado from "../components/Empleado/ListaEmpleado.jsx"
 import {
     Row,
     Col
@@ -9,15 +10,13 @@ import {
 
 class Empleados extends React.Component{
     state ={
-        show : true
+        opc : 0
     }
-
-    toggleShow = ()=>{
-        console.log("funciona el click");
-        this.setState({show : !this.state.show});
+    toggleOpc = (opc)=>{
+        this.setState(opc);
     };
     render(){
-        if(this.state.show){
+        if(this.state.opc === 0){
             return (
                 <>
                     <div className="content">
@@ -28,16 +27,16 @@ class Empleados extends React.Component{
                         </Row>
                         <Row>
                             <Col lg="6" md="6" sm="6">
-                                <ButtonEmpleado value="Nuevo Registro" icon="nc-simple-add" itype="success" ocultar={this.toggleShow}/>
+                                <ButtonEmpleado value="Nuevo Registro" icon="nc-simple-add" itype="success" mostrar={this.toggleOpc} opc={{opc:1}}/>
                             </Col>
                             <Col lg="6" md="6" sm="6">
-                                <ButtonEmpleado value="Listado" icon="nc-align-left-2" itype="warning"/>
+                                <ButtonEmpleado value="Listado" icon="nc-align-left-2" itype="warning" mostrar={this.toggleOpc} opc={{opc:2}}/>
                             </Col>
                         </Row>
                     </div>
                 </>
             );
-        }else{
+        }else if(this.state.opc === 1){
             return (
                 <>
                     <div className="content">
@@ -48,7 +47,24 @@ class Empleados extends React.Component{
                         </Row>
                         <Row>
                             <Col lg="12" md="12" sm="12">
-                                <FormEmpleado/>
+                                <FormEmpleado mostrar={this.toggleOpc} opc={{opc:0}}/>
+                            </Col>
+                        </Row>
+                    </div>
+                </>
+            );
+        }else if(this.state.opc === 2){
+            return(
+                <>
+                    <div className="content">
+                        <Row className="pb-4">
+                            <Col lg="12" md="12" sm="12" className="text-center">
+                                <span className="h2">Empleados</span>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col lg="12" md="12" sm="12">
+                                <ListaEmpleado mostrar={this.toggleOpc} opc={{opc:0}}/>
                             </Col>
                         </Row>
                     </div>

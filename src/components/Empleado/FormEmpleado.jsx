@@ -13,7 +13,7 @@ import {
     Col
 } from "reactstrap";
 
-function FormEmpleado() {
+function FormEmpleado({mostrar, opc}) {
     return (
         <>
             <Card className="card-user">
@@ -21,7 +21,9 @@ function FormEmpleado() {
                     <Row>
                         <Col md="1">
                             <div className="icon-big text-center icon-success mt-3">
-                                <i className="nc-icon nc-minimal-left puntero"/>
+                                <i className="nc-icon nc-minimal-left puntero" onClick={()=>{
+                                    mostrar(opc);
+                                }}/>
                             </div>
                         </Col>
                         <Col>

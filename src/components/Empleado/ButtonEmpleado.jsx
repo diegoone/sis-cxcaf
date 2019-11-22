@@ -8,7 +8,7 @@ import {
     Col
 } from "reactstrap";
 
-function ButtonEmpleado({value, icon, itype, ocultar}){
+function ButtonEmpleado({value, icon, itype, mostrar, opc}){
     return (
         <>
             <Card className="card-stats">
@@ -23,7 +23,9 @@ function ButtonEmpleado({value, icon, itype, ocultar}){
                     <Row>
                         <Col md="12" xs="5">
                             <div className={`icon-big text-center icon-${itype}`}>
-                                <i className={`nc-icon ${icon} text-${itype}  puntero`} onClick={ocultar}/>
+                                <i className={`nc-icon ${icon} text-${itype}  puntero`} onClick={()=>{
+                                    mostrar(opc);
+                                }}/>
                             </div>
                         </Col>
                     </Row>
