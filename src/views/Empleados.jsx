@@ -2,7 +2,7 @@ import React from "react";
 import "../assets/css/paper-dashboard.css";
 import ButtonEmpleado from "../components/Empleado/ButtonEmpleado.jsx";
 import FormEmpleado from "../components/Empleado/FormEmpleado.jsx";
-import ListaEmpleado from "../components/Empleado/ListaEmpleado.jsx"
+import ListaEmpleado from "../components/Empleado/ListaEmpleado.jsx";
 import {
     Row,
     Col

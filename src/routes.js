@@ -9,17 +9,17 @@ import Empleados from "views/Empleados.jsx"
 
 var routes = [
   {
-    path: "/Empleados",
-    name: "Empleados",
-    icon: "nc-icon nc-single-02",
-    component: Empleados,
-    layout: "/admin"
-  },
-  {
     path: "/dashboard",
     name: "Inicio",
     icon: "nc-icon nc-bank",
     component: Dashboard,
+    layout: "/admin"
+  },
+  {
+    path: "/Empleados",
+    name: "Empleados",
+    icon: "nc-icon nc-single-02",
+    component: Empleados,
     layout: "/admin"
   },
   {
