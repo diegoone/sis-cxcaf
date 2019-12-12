@@ -8,7 +8,7 @@ import {
     Col
 } from "reactstrap";
 
-function ButtonEmpleado({value, icon, itype, mostrar, opc}){
+function Cbuttom({value, icon, itype, mostrar, opc}){
     return (
         <>
             <Card className="card-stats">
@@ -35,4 +35,4 @@ function ButtonEmpleado({value, icon, itype, mostrar, opc}){
     );
 }
 
-export default ButtonEmpleado;
+export default Cbuttom;

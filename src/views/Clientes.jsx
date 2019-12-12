@@ -1,28 +1,28 @@
 import React from "react";
 import "../assets/css/paper-dashboard.css";
-import Cbuttom from "../components/Buttons/Cbuttom.jsx";
-import FormEmpleado from "../components/Empleado/FormEmpleado.jsx";
-import ListaEmpleado from "../components/Empleado/ListaEmpleado.jsx";
+import Cbuttom from "../components/Buttons/Cbuttom";
 import {
     Row,
     Col
 } from "reactstrap";
+import FormCliente from "components/Cliente/FormCliente";
+import ListaCliente from "components/Cliente/ListaCliente";
 
-class Empleados extends React.Component{
-    state ={
-        opc : 0
+class Clientes extends React.Component {
+    state = {
+        opc: 0
     }
-    toggleOpc = (opc)=>{
+    toggleOpc = (opc) => {
         this.setState(opc);
     };
-    render(){
-        if(this.state.opc === 0){
+    render() {
+        if (this.state.opc === 0) {
             return (
                 <>
                     <div className="content">
                         <Row className="pb-4">
                             <Col lg="12" md="12" sm="12" className="text-center">
-                                <span className="h2">Empleados</span>
+                                <span className="h2">Clientes</span>
                             </Col>
                         </Row>
                         <Row>
@@ -42,12 +42,12 @@ class Empleados extends React.Component{
                     <div className="content">
                         <Row className="pb-4">
                             <Col lg="12" md="12" sm="12" className="text-center">
-                                <span className="h2">Empleados</span>
+                                <span className="h2">Clientes</span>
                             </Col>
                         </Row>
                         <Row>
                             <Col lg="12" md="12" sm="12">
-                                <FormEmpleado mostrar={this.toggleOpc} opc={{opc:0}}/>
+                                <FormCliente mostrar={this.toggleOpc} opc={{opc:0}}/>
                             </Col>
                         </Row>
                     </div>
@@ -59,12 +59,12 @@ class Empleados extends React.Component{
                     <div className="content">
                         <Row className="pb-4">
                             <Col lg="12" md="12" sm="12" className="text-center">
-                                <span className="h2">Empleados</span>
+                                <span className="h2">Clientes</span>
                             </Col>
                         </Row>
                         <Row>
                             <Col lg="12" md="12" sm="12">
-                                <ListaEmpleado mostrar={this.toggleOpc} opc={{opc:0}}/>
+                                <ListaCliente mostrar={this.toggleOpc} opc={{opc:0}}/>
                             </Col>
                         </Row>
                     </div>
@@ -74,4 +74,4 @@ class Empleados extends React.Component{
     };
 }
 
-export default Empleados;
+export default Clientes;

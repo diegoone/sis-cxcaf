@@ -5,7 +5,8 @@ import Typography from "views/Typography.jsx";
 import TableList from "views/Tables.jsx";
 import Maps from "views/Map.jsx";
 import UserPage from "views/User.jsx";
-import Empleados from "views/Empleados.jsx"
+import Empleados from "views/Empleados.jsx";
+import Clientes from "views/Clientes.jsx";
 
 var routes = [
   {
@@ -16,10 +17,17 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/Empleados",
+    path: "/empleados",
     name: "Empleados",
     icon: "nc-icon nc-single-02",
     component: Empleados,
+    layout: "/admin"
+  },
+  {
+    path: "/clientes",
+    name: "Clientes",
+    icon: "nc-icon nc-circle-10",
+    component: Clientes,
     layout: "/admin"
   },
   {
