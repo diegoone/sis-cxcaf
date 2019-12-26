@@ -51,7 +51,7 @@ function ListaCliente({mostrar, opc}) {
                                                 <td>1234-123456-123-1</td>
                                                 <td>07/10/1996</td>
                                                 <td>7111-1111</td>
-                                                <td><button className="btn btn-outline-info p-1"><i class="fas fa-money-check"></i></button></td>
+                                                <td><button className="btn btn-outline-info"><i class="fas fa-money-check"></i></button></td>
                                             </tr>
                                             <tr>
                                                 <td>Kevin Eduardo Portillo Durán</td>
@@ -59,7 +59,7 @@ function ListaCliente({mostrar, opc}) {
                                                 <td>1234-123456-123-1</td>
                                                 <td>07/10/1996</td>
                                                 <td>7222-2222</td>
-                                                <td><button className="btn btn-outline-info p-1"><i class="fas fa-money-check"></i></button></td>
+                                                <td><button className="btn btn-outline-info"><i class="fas fa-money-check"></i></button></td>
                                             </tr>
                                         </tbody>
                                     </Table>
