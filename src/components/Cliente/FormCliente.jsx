@@ -1,4 +1,5 @@
 import React from "react";
+import FormPersona from "components/Persona/FormPersona";
 import "../../assets/css/paper-dashboard.css";
 import {
     Button,
@@ -8,6 +9,7 @@ import {
     CardTitle,
     FormGroup,
     Form,
+    CustomInput,
     Input,
     Row,
     Col,
@@ -34,283 +36,36 @@ function FormCliente({ mostrar, opc }) {
                 </CardHeader>
                 <CardBody>
                     <Form>
+                        <FormPersona mostrar={mostrar} opc={opc} />
+                        <hr />
                         <Row>
                             <Col className="pr-1" md="6">
+
+                                <label>Tipo</label>
                                 <FormGroup>
-                                    <label>Nombres</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder="Digite su nombre"
-                                        type="text"
-                                    />
+                                    <CustomInput type="select" name="tipo">
+                                        <option value="">Seleccione ...</option>
+                                        <option value="Persona Natural">Persona Natural</option>
+                                        <option value="Persona Jurídica">Persona Jurídica</option>
+                                    </CustomInput>
                                 </FormGroup>
+
                             </Col>
-                            <Col className="pl-1" md="6">
-                                <FormGroup>
-                                    <label>Apellidos</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder="Digite sus apellidos"
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col md="6">
-                                <FormGroup>
-                                    <label>Sexo</label>
-                                    <FormGroup check>
-                                        <Label check>
-                                            <Input type="radio" name="rsex" />{' '}
-                                            Masculino
-                                        </Label>
-                                        <Label check>
-                                            <Input type="radio" name="rsex" />{' '}
-                                            Femenino
-                                        </Label>
-                                    </FormGroup>
-                                </FormGroup>
-                            </Col>
-                            <Col md="6">
-                                <FormGroup>
-                                    <label >Estado civil</label>
-                                    <FormGroup>
-                                        <select name="" id="">
-                                            <option value="">Seleccione...</option>
-                                            <option value="">Soltero</option>
-                                            <option value="">Casado</option>
-                                            <option value="">Acompañado</option>
-                                            <option value="">Divorciado</option>
-                                            <option value="">Viudo</option>
-                                        </select>
-                                    </FormGroup>
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className="pr-1" md="4">
-                                <FormGroup>
-                                    <label>DUI</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder="########-#"
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                            <Col className="px-1" md="4">
-                                <FormGroup>
-                                    <label>NIT</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder="####-######-###-#"
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                            <Col className="pl-1" md="4">
-                                <FormGroup>
-                                    <label>Fecha de Nacimiento</label>
-                                    <Input placeholder="dd/MM/yyyy" type="Date" />
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className="pr-1" md="4">
-                                <FormGroup>
-                                    <label>Profeciòn u oficio</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder=""
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                            <Col className="px-1" md="4">
-                                <FormGroup>
-                                    <label>Teléfono</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder="####-####"
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                            <Col className="pl-1" md="4">
-                                <FormGroup>
-                                    <label>Nº de ISSS</label>
-                                    <Input placeholder="" type="text" />
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className="pr-1" md="4">
-                                <FormGroup>
-                                    <label>Salario</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder=""
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className="pr-1" md="12">
-                                <FormGroup>
-                                    <label>Direcciòn</label>
-                                    <FormGroup>
-                                        <textarea name="" id="" cols="30" rows="10" className="form-control"></textarea>
-                                    </FormGroup>
-                                </FormGroup>
+                            <Col className="pr-1" md="6">
+
+                                <label>Clasificación</label>
+                                <div>
+                                    <CustomInput type="radio" id="radioA" name="clasificacion" label="A" />
+                                    <CustomInput type="radio" id="radioB" name="clasificacion" label="B" />
+                                    <CustomInput type="radio" id="radioC" name="clasificacion" label="C" />
+                                    <CustomInput type="radio" id="RadioD" name="clasificacion" label="D" />
+                                </div>
+
                             </Col>
                         </Row>
                         <hr className="border"></hr>
                         <h4 className="offset-1">Datos del Fiador</h4>
-                        <Row>
-                            <Col className="pr-1" md="6">
-                                <FormGroup>
-                                    <label>Nombres</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder="Digite su nombre"
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                            <Col className="pl-1" md="6">
-                                <FormGroup>
-                                    <label>Apellidos</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder="Digite sus apellidos"
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col md="6">
-                                <FormGroup>
-                                    <label>Sexo</label>
-                                    <FormGroup check>
-                                        <Label check>
-                                            <Input type="radio" name="rsex" />{' '}
-                                            Masculino
-                                        </Label>
-                                        <Label check>
-                                            <Input type="radio" name="rsex" />{' '}
-                                            Femenino
-                                        </Label>
-                                    </FormGroup>
-                                </FormGroup>
-                            </Col>
-                            <Col md="6">
-                                <FormGroup>
-                                    <label >Estado civil</label>
-                                    <FormGroup>
-                                        <select name="" id="">
-                                            <option value="">Seleccione...</option>
-                                            <option value="">Soltero</option>
-                                            <option value="">Casado</option>
-                                            <option value="">Acompañado</option>
-                                            <option value="">Divorciado</option>
-                                            <option value="">Viudo</option>
-                                        </select>
-                                    </FormGroup>
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className="pr-1" md="4">
-                                <FormGroup>
-                                    <label>DUI</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder="########-#"
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                            <Col className="px-1" md="4">
-                                <FormGroup>
-                                    <label>NIT</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder="####-######-###-#"
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                            <Col className="pl-1" md="4">
-                                <FormGroup>
-                                    <label>Fecha de Nacimiento</label>
-                                    <Input placeholder="dd/MM/yyyy" type="Date" />
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className="pr-1" md="4">
-                                <FormGroup>
-                                    <label>Profeciòn u oficio</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder=""
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                            <Col className="px-1" md="4">
-                                <FormGroup>
-                                    <label>Teléfono</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder="####-####"
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                            <Col className="pl-1" md="4">
-                                <FormGroup>
-                                    <label>Nº de ISSS</label>
-                                    <Input placeholder="" type="text" />
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className="pr-1" md="4">
-                                <FormGroup>
-                                    <label>Salario</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder=""
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className="pr-1" md="12">
-                                <FormGroup>
-                                    <label>Direcciòn</label>
-                                    <FormGroup>
-                                        <textarea name="" id="" cols="30" rows="10" className="form-control"></textarea>
-                                    </FormGroup>
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <div className="update ml-auto mr-auto">
-                                <Button
-                                    className="btn-round"
-                                    color="primary"
-                                    type="submit"
-                                >
-                                    Registrar Empleado
-                        </Button>
-                            </div>
-                        </Row>
+                        <FormPersona mostrar={mostrar} opc={opc} />
                     </Form>
                 </CardBody>
             </Card>

@@ -1,5 +1,6 @@
 import React from "react";
 import "../../assets/css/paper-dashboard.css";
+import FormPersona from "components/Persona/FormPersona";
 import {
     Button,
     Card,
@@ -33,105 +34,18 @@ function FormEmpleado({mostrar, opc}) {
                 </CardHeader>
                 <CardBody>
                     <Form>
-                        <Row>
-                            <Col className="pr-1" md="6">
-                                <FormGroup>
-                                    <label>Nombres</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder="Digite su nombre"
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                            <Col className="pl-1" md="6">
-                                <FormGroup>
-                                    <label>Apellidos</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder="Digite sus apellidos"
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col md="12">
-                                <FormGroup>
-                                    <label>Dirección</label>
-                                    <Input
-                                        defaultValue="Apastepeque, San Vicente"
-                                        placeholder="Dirección de residencia"
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className="pr-1" md="4">
-                                <FormGroup>
-                                    <label>DUI</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder="########-#"
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                            <Col className="px-1" md="4">
-                                <FormGroup>
-                                    <label>NIT</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder="####-######-###-#"
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                            <Col className="pl-1" md="4">
-                                <FormGroup>
-                                    <label>Fecha de Nacimiento</label>
-                                    <Input placeholder="dd/MM/yyyy" type="Date" />
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className="pr-1" md="4">
-                                <FormGroup>
-                                    <label>Teléfono</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder="####-####"
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                            <Col className="px-1" md="4">
-                                <FormGroup>
-                                    <label>Usuario</label>
-                                    <Input
-                                        defaultValue=""
-                                        placeholder="Digite su usuario"
-                                        type="text"
-                                    />
-                                </FormGroup>
-                            </Col>
-                            <Col className="pl-1" md="4">
-                                <FormGroup>
-                                    <label>Contraseña</label>
-                                    <Input placeholder="Digite su contraseña" type="password" />
-                                </FormGroup>
-                            </Col>
-                        </Row>
+                        <FormPersona mostrar={mostrar} opc={opc}/>
+                        <hr />
                         <Row>
                             <Col className="pr-1" md="4">
                                 <FormGroup>
                                     <label>Cargo</label>
-                                    <select className="form-control">
+                                    <select name="cargo" className="form-control">
                                         <option value="">Seleccione...</option>
-                                        <option value="">Vendedor</option>
-                                        <option value="">Administrador</option>
+                                        <option value="administrador/a">Administrador/a</option>
+                                        <option value="empleado/a">empleado/a</option>
                                     </select>
+                                    
                                 </FormGroup>
                             </Col>
                         </Row>
