@@ -27,8 +27,8 @@ function FormCliente({ mostrar, opc }) {
                                 }} />
                             </div>
                         </Col>
-                        <Col>
-                            <CardTitle tag="h5">Registro de Empleado</CardTitle>
+                        <Col md="11">
+                            <CardTitle tag="h5" className="text center" >Registro de Cliente</CardTitle>
                         </Col>
                     </Row>
                 </CardHeader>
@@ -141,6 +141,152 @@ function FormCliente({ mostrar, opc }) {
                                 <FormGroup>
                                     <label>Nº de ISSS</label>
                                     <Input placeholder="" type="text" />
+                                </FormGroup>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col className="pr-1" md="4">
+                                <FormGroup>
+                                    <label>Salario</label>
+                                    <Input
+                                        defaultValue=""
+                                        placeholder=""
+                                        type="text"
+                                    />
+                                </FormGroup>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col className="pr-1" md="12">
+                                <FormGroup>
+                                    <label>Direcciòn</label>
+                                    <FormGroup>
+                                        <textarea name="" id="" cols="30" rows="10" className="form-control"></textarea>
+                                    </FormGroup>
+                                </FormGroup>
+                            </Col>
+                        </Row>
+                        <hr className="border"></hr>
+                        <h4 className="offset-1">Datos del Fiador</h4>
+                        <Row>
+                            <Col className="pr-1" md="6">
+                                <FormGroup>
+                                    <label>Nombres</label>
+                                    <Input
+                                        defaultValue=""
+                                        placeholder="Digite su nombre"
+                                        type="text"
+                                    />
+                                </FormGroup>
+                            </Col>
+                            <Col className="pl-1" md="6">
+                                <FormGroup>
+                                    <label>Apellidos</label>
+                                    <Input
+                                        defaultValue=""
+                                        placeholder="Digite sus apellidos"
+                                        type="text"
+                                    />
+                                </FormGroup>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col md="6">
+                                <FormGroup>
+                                    <label>Sexo</label>
+                                    <FormGroup check>
+                                        <Label check>
+                                            <Input type="radio" name="rsex" />{' '}
+                                            Masculino
+                                        </Label>
+                                        <Label check>
+                                            <Input type="radio" name="rsex" />{' '}
+                                            Femenino
+                                        </Label>
+                                    </FormGroup>
+                                </FormGroup>
+                            </Col>
+                            <Col md="6">
+                                <FormGroup>
+                                    <label >Estado civil</label>
+                                    <FormGroup>
+                                        <select name="" id="">
+                                            <option value="">Seleccione...</option>
+                                            <option value="">Soltero</option>
+                                            <option value="">Casado</option>
+                                            <option value="">Acompañado</option>
+                                            <option value="">Divorciado</option>
+                                            <option value="">Viudo</option>
+                                        </select>
+                                    </FormGroup>
+                                </FormGroup>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col className="pr-1" md="4">
+                                <FormGroup>
+                                    <label>DUI</label>
+                                    <Input
+                                        defaultValue=""
+                                        placeholder="########-#"
+                                        type="text"
+                                    />
+                                </FormGroup>
+                            </Col>
+                            <Col className="px-1" md="4">
+                                <FormGroup>
+                                    <label>NIT</label>
+                                    <Input
+                                        defaultValue=""
+                                        placeholder="####-######-###-#"
+                                        type="text"
+                                    />
+                                </FormGroup>
+                            </Col>
+                            <Col className="pl-1" md="4">
+                                <FormGroup>
+                                    <label>Fecha de Nacimiento</label>
+                                    <Input placeholder="dd/MM/yyyy" type="Date" />
+                                </FormGroup>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col className="pr-1" md="4">
+                                <FormGroup>
+                                    <label>Profeciòn u oficio</label>
+                                    <Input
+                                        defaultValue=""
+                                        placeholder=""
+                                        type="text"
+                                    />
+                                </FormGroup>
+                            </Col>
+                            <Col className="px-1" md="4">
+                                <FormGroup>
+                                    <label>Teléfono</label>
+                                    <Input
+                                        defaultValue=""
+                                        placeholder="####-####"
+                                        type="text"
+                                    />
+                                </FormGroup>
+                            </Col>
+                            <Col className="pl-1" md="4">
+                                <FormGroup>
+                                    <label>Nº de ISSS</label>
+                                    <Input placeholder="" type="text" />
+                                </FormGroup>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col className="pr-1" md="4">
+                                <FormGroup>
+                                    <label>Salario</label>
+                                    <Input
+                                        defaultValue=""
+                                        placeholder=""
+                                        type="text"
+                                    />
                                 </FormGroup>
                             </Col>
                         </Row>

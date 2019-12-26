@@ -17,14 +17,14 @@ var routes = [
     layout: "/admin"
   },
   {
-    path: "/empleados",
+    path: "/empleado",
     name: "Empleados",
     icon: "nc-icon nc-single-02",
     component: Empleados,
     layout: "/admin"
   },
   {
-    path: "/clientes",
+    path: "/cliente",
     name: "Clientes",
     icon: "nc-icon nc-circle-10",
     component: Clientes,
