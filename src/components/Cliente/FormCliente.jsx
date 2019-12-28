@@ -39,8 +39,7 @@ function FormCliente({ mostrar, opc }) {
                         <FormPersona mostrar={mostrar} opc={opc} />
                         <hr />
                         <Row>
-                            <Col className="pr-1" md="6">
-
+                            <Col className="pr-1" md="4">
                                 <label>Tipo</label>
                                 <FormGroup>
                                     <CustomInput type="select" name="tipo">
@@ -51,7 +50,7 @@ function FormCliente({ mostrar, opc }) {
                                 </FormGroup>
 
                             </Col>
-                            <Col className="pr-1" md="6">
+                            <Col className="pr-1" md="4">
 
                                 <label>Clasificación</label>
                                 <div>
