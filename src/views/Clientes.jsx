@@ -5,7 +5,7 @@ import {
     Row,
     Col
 } from "reactstrap";
-import FormCliente from "components/Cliente/FormCliente";
+import {FormCliente} from "components/Cliente/FormCliente";
 import ListaCliente from "components/Cliente/ListaCliente";
 
 class Clientes extends React.Component {

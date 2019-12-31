@@ -1,7 +1,7 @@
 import React from "react";
 import "../assets/css/paper-dashboard.css";
 import Cbuttom from "../components/Buttons/Cbuttom.jsx";
-import FormEmpleado from "../components/Empleado/FormEmpleado.jsx";
+import {FormEmpleado} from "../components/Empleado/FormEmpleado.jsx";
 import ListaEmpleado from "../components/Empleado/ListaEmpleado.jsx";
 import {
     Row,

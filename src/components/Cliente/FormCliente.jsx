@@ -1,5 +1,5 @@
 import React from "react";
-import FormPersona from "components/Persona/FormPersona";
+import { ElementsPersona } from "components/Persona/FormPersona";
 import "../../assets/css/paper-dashboard.css";
 import {
     Button,
@@ -36,40 +36,43 @@ function FormCliente({ mostrar, opc }) {
                 </CardHeader>
                 <CardBody>
                     <Form>
-                        <FormPersona mostrar={mostrar} opc={opc} />
-                        <hr />
-                        <Row>
-                            <Col className="pr-1" md="4">
-                                <label>Tipo</label>
-                                <FormGroup>
-                                    <CustomInput type="select" name="tipo">
-                                        <option value="">Seleccione ...</option>
-                                        <option value="Persona Natural">Persona Natural</option>
-                                        <option value="Persona Jurídica">Persona Jurídica</option>
-                                    </CustomInput>
-                                </FormGroup>
-
-                            </Col>
-                            <Col className="pr-1" md="4">
-
-                                <label>Clasificación</label>
-                                <div>
-                                    <CustomInput type="radio" id="radioA" name="clasificacion" label="A" />
-                                    <CustomInput type="radio" id="radioB" name="clasificacion" label="B" />
-                                    <CustomInput type="radio" id="radioC" name="clasificacion" label="C" />
-                                    <CustomInput type="radio" id="RadioD" name="clasificacion" label="D" />
-                                </div>
-
-                            </Col>
-                        </Row>
-                        <hr className="border"></hr>
-                        <h4 className="offset-1">Datos del Fiador</h4>
-                        <FormPersona mostrar={mostrar} opc={opc} />
+                        <ElementsCliente mostrar={mostrar} opc={opc}/>
                     </Form>
                 </CardBody>
             </Card>
         </>
     );
 }
+function ElementsCliente({ mostrar, opc }) {
+    return (
+        <>
+            <ElementsPersona mostrar={mostrar} opc={opc} />
+            <hr />
+            <Row>
+                <Col className="pr-1" md="4">
+                    <label>Tipo</label>
+                    <FormGroup>
+                        <CustomInput type="select" name="tipo">
+                            <option value="">Seleccione ...</option>
+                            <option value="Persona Natural">Persona Natural</option>
+                            <option value="Persona Jurídica">Persona Jurídica</option>
+                        </CustomInput>
+                    </FormGroup>
 
-export default FormCliente;
+                </Col>
+                <Col className="pr-1" md="4">
+
+                    <label>Clasificación</label>
+                    <div>
+                        <CustomInput type="radio" id="radioA" name="clasificacion" label="A" />
+                        <CustomInput type="radio" id="radioB" name="clasificacion" label="B" />
+                        <CustomInput type="radio" id="radioC" name="clasificacion" label="C" />
+                        <CustomInput type="radio" id="RadioD" name="clasificacion" label="D" />
+                    </div>
+
+                </Col>
+            </Row>
+        </>
+    );
+}
+export { FormCliente, ElementsCliente };

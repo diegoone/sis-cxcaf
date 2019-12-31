@@ -1,6 +1,6 @@
 import React from "react";
 import "../../assets/css/paper-dashboard.css";
-import FormPersona from "components/Persona/FormPersona";
+import {ElementsPersona} from "components/Persona/FormPersona";
 import {
     Button,
     Card,
@@ -14,6 +14,7 @@ import {
     Row,
     Col
 } from "reactstrap";
+
 
 function FormEmpleado({ mostrar, opc }) {
     return (
@@ -35,38 +36,45 @@ function FormEmpleado({ mostrar, opc }) {
                 </CardHeader>
                 <CardBody>
                     <Form>
-                        <FormPersona mostrar={mostrar} opc={opc} />
-                        <hr />
-                        <Row>
-                            <Col className="pr-1" md="4">
-                                <FormGroup>
-                                    <label>Cargo</label>
-                                    <select name="cargo" className="form-control">
-                                        <option value="">Seleccione...</option>
-                                        <option value="administrador/a">Administrador/a</option>
-                                        <option value="empleado/a">empleado/a</option>
-                                    </select>
-
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <div className="update ml-auto mr-auto">
-                                <Button
-                                    className="btn-round"
-                                    color="primary"
-                                    type="submit"
-                                >
-                                    Registrar Empleado
-                        </Button>
-                            </div>
-                        </Row>
+                        <ElementsEmpleado mostrar={mostrar} opc={opc}/>
                     </Form>
                 </CardBody>
             </Card>
         </>
     );
 };
+function ElementsEmpleado({ mostrar, opc }) {
+    return (
+        <>
+            <ElementsPersona mostrar={mostrar} opc={opc} />
+            <hr />
+            <Row>
+                <Col className="pr-1" md="4">
+                    <FormGroup>
+                        <label>Cargo</label>
+                        <select name="cargo" className="form-control">
+                            <option value="">Seleccione...</option>
+                            <option value="administrador/a">Administrador/a</option>
+                            <option value="empleado/a">empleado/a</option>
+                        </select>
+
+                    </FormGroup>
+                </Col>
+            </Row>
+            <Row>
+                <div className="update ml-auto mr-auto">
+                    <Button
+                        className="btn-round"
+                        color="primary"
+                        type="submit"
+                    >
+                        Registrar Empleado
+                        </Button>
+                </div>
+            </Row>
+        </>
+    );
+}
 
 function SelectEmpleado({ mostrar, opc }) {
     return (
@@ -80,6 +88,4 @@ function SelectEmpleado({ mostrar, opc }) {
         </Col>
     );
 }
-
-export default FormEmpleado;
-//export default SelectEmpleado;
+export { SelectEmpleado, ElementsEmpleado, FormEmpleado };

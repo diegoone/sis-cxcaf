@@ -1,9 +1,13 @@
+
 import React from "react";
 import "../../assets/css/paper-dashboard.css";
-import FormMarca from "components/Marca/FormMarca";
-import FormSucursal from "components/Sucursal/FormSucursal";
-import FormDepartamento from "components/Departamento/FormDepartamento";
-import FormTipoActivo from "components/TipoActivo/FormTipoActivo";
+
+import { ElementsMarca } from "components/Marca/FormMarca";
+import { ElementsSucursal } from "components/Sucursal/FormSucursal";
+import { ElementsDepartamento } from "components/Departamento/FormDepartamento";
+import { ElementsTipoActivo } from "components/TipoActivo/FormTipoActivo";
+import { SelectEmpleado } from "components/Empleado/FormEmpleado";
+
 import {
     Button,
     Card, CardHeader,
@@ -31,59 +35,67 @@ function FormActivoFijo({ mostrar, opc }) {
                 </CardHeader>
                 <CardBody>
                     <Form>
-                        <Row>
-                            <Col className="pr-1" md="4">
-                                <label>Nombre</label>
-                                <FormGroup>
-                                    <Input defaultValue="" name="nombre" placeholder="Aa" />
-                                </FormGroup>
-                            </Col>
-                            <Col className="pr-1" md="6">
-                                <label>Descripción</label>
-                                <FormGroup>
-                                    <textarea name="descripcion" cols="30" rows="10" className="form-control"></textarea>
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className="pr-1" md="4">
-
-                                <label>Procedencia:</label>
-                                <FormGroup>
-                                    <CustomInput type="select" name="procedencia">
-                                        <option value=""> Seleccione </option>
-                                        <option value="NUEVO">NUEVO</option>
-                                        <option value="USADO">USADO</option>
-                                        <option value="DONADO NUEVO">DONADO NUEVO</option>
-                                        <option value="DONADO USADO">DONADO USADO</option>
-                                    </CustomInput>
-                                </FormGroup>
-                            </Col>
-                            <Col className="pr-1" md="4">
-
-                                <label>Precio:</label>
-                                <FormGroup>
-                                    <Input name="precio" type="text" placeholder="###.##"/>
-                                </FormGroup>
-                            </Col>
-                            <Col className="pr-1" md="4">
-
-                                <label>Fecha de adquisición:</label>
-                                <FormGroup>
-                                    <Input name="fechaAdquisicion" type="date" placeholder="###.##"/>
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <FormMarca mostrar={mostrar} opc={opc} />
-                        <FormSucursal mostrar={mostrar} opc={opc}/>
-                        <FormDepartamento mostrar={mostrar} opc={opc}/>
-                        <FormTipoActivo mostrar={mostrar} opc={opc}/>
+                        <ElementsActivoFijo mostrar={mostrar} opc={opc}/>
+                        <SelectEmpleado mostrar={mostrar} opc={opc} />
+                        <ElementsMarca mostrar={mostrar} opc={opc} />
+                        <ElementsSucursal mostrar={mostrar} opc={opc} />
+                        <ElementsDepartamento mostrar={mostrar} opc={opc} />
+                        <ElementsTipoActivo mostrar={mostrar} opc={opc} />
                     </Form>
                 </CardBody>
             </Card>
         </>
     );
 }
+function ElementsActivoFijo({ mostrar, opc }) {
+    return (
+        <>
+            <Row>
+                <Col className="pr-1" md="4">
+                    <label>Nombre</label>
+                    <FormGroup>
+                        <Input defaultValue="" name="nombre" placeholder="Aa" />
+                    </FormGroup>
+                </Col>
+                <Col className="pr-1" md="6">
+                    <label>Descripción</label>
+                    <FormGroup>
+                        <textarea name="descripcion" cols="30" rows="10" className="form-control"></textarea>
+                    </FormGroup>
+                </Col>
+            </Row>
+            <Row>
+                <Col className="pr-1" md="4">
 
+                    <label>Procedencia:</label>
+                    <FormGroup>
+                        <CustomInput type="select" name="procedencia">
+                            <option value=""> Seleccione </option>
+                            <option value="NUEVO">NUEVO</option>
+                            <option value="USADO">USADO</option>
+                            <option value="DONADO NUEVO">DONADO NUEVO</option>
+                            <option value="DONADO USADO">DONADO USADO</option>
+                        </CustomInput>
+                    </FormGroup>
+                </Col>
+                <Col className="pr-1" md="4">
 
-export default FormActivoFijo;
+                    <label>Precio:</label>
+                    <FormGroup>
+                        <Input name="precio" type="text" placeholder="###.##" />
+                    </FormGroup>
+                </Col>
+                <Col className="pr-1" md="4">
+
+                    <label>Fecha de adquisición:</label>
+                    <FormGroup>
+                        <Input name="fechaAdquisicion" type="date" placeholder="###.##" />
+                    </FormGroup>
+                </Col>
+            </Row>
+
+        </>
+    );
+}
+
+export { FormActivoFijo, ElementsActivoFijo };

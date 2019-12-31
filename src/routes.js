@@ -7,7 +7,8 @@ import Maps from "views/Map.jsx";
 import UserPage from "views/User.jsx";
 import Empleados from "views/Empleados.jsx";
 import Clientes from "views/Clientes.jsx";
-import ActivoFijo from "views/ActivoFijo.jsx";
+import {ActivoFijo} from "views/ActivoFijo.jsx";
+import Creditos from "views/Creditos.jsx";
 var routes = [
   {
     path: "/dashboard",
@@ -31,12 +32,21 @@ var routes = [
     layout: "/admin"
   },
   {
+    path: "/credito",
+    name: "Crédito",
+    icon: "nc-icon nc-circle-10",
+    component: Creditos,
+    layout: "/admin"
+  },
+ 
+  {
     path: "/activofijo",
     name: "Activo Fijo",
     icon: "nc-icon nc-circle-10",
     component: ActivoFijo,
     layout: "/admin"
   },
+ 
   {
     path: "/icons",
     name: "Iconos",

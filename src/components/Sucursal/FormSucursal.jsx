@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 
 
-function FormSucursal({mostrar, opc}) {
+function ElementsSucursal({mostrar, opc}) {
     return (
         <>
             <Row>
@@ -38,4 +38,4 @@ function FormSucursal({mostrar, opc}) {
         </>
     );
 }
-export default FormSucursal;
+export { ElementsSucursal};

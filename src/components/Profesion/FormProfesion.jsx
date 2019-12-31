@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 
 
-function FormProfesion({mostrar, opc}) {
+function ElementsProfesion({mostrar, opc}) {
     return (
         <>
             <Row>
@@ -32,4 +32,4 @@ function FormProfesion({mostrar, opc}) {
         </>
     );
 }
-export default FormProfesion;
+export {ElementsProfesion};

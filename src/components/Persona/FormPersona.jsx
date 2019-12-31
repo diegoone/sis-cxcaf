@@ -1,6 +1,6 @@
 import React from "react";
 import "../../assets/css/paper-dashboard.css";
-import FormProfesion from "components/Profesion/FormProfesion";
+import {ElementsProfesion} from "components/Profesion/FormProfesion";
 import {
     FormGroup,
     CustomInput,
@@ -10,7 +10,7 @@ import {
     Label,
 } from "reactstrap";
 
-function FormPersona({ mostrar, opc }) {
+function ElementsPersona({ mostrar, opc }) {
     return (
         <>
             <Row>
@@ -100,7 +100,7 @@ function FormPersona({ mostrar, opc }) {
                     </FormGroup>
                 </Col>
             </Row>
-            <FormProfesion mostrar={mostrar} opc={opc} />
+            <ElementsProfesion mostrar={mostrar} opc={opc} />
             <Row>
                 <Col className="pr-1" md="4">
                     <FormGroup>
@@ -163,4 +163,4 @@ function FormPersona({ mostrar, opc }) {
     );
 }
 
-export default FormPersona;
+export {ElementsPersona};

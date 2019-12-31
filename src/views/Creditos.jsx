@@ -1,28 +1,30 @@
 import React from "react";
 import "../assets/css/paper-dashboard.css";
-import Cbuttom from "../components/Buttons/Cbuttom";
+import Cbuttom from "../components/Buttons/Cbuttom.jsx";
+import {FormEmpleado} from "../components/Empleado/FormEmpleado.jsx";
+import {FormFiador} from "../components/Fiador/FormFiador.jsx";
+import {FormCredito} from "../components/Credito/FormCredito.jsx";
+import ListaEmpleado from "../components/Empleado/ListaEmpleado.jsx";
 import {
     Row,
     Col
 } from "reactstrap";
-import {FormActivoFijo} from "components/ActivoFijo/FormActivoFijo";
-import ListaActivoFijo from "components/ActivoFijo/ListaActivoFijo";
 
-class ActivoFijo extends React.Component {
-    state = {
-        opc: 0
+class Creditos extends React.Component{
+    state ={
+        opc : 0
     }
-    toggleOpc = (opc) => {
+    toggleOpc = (opc)=>{
         this.setState(opc);
     };
-    render() {
-        if (this.state.opc === 0) {
+    render(){
+        if(this.state.opc === 0){
             return (
                 <>
                     <div className="content">
                         <Row className="pb-4">
                             <Col lg="12" md="12" sm="12" className="text-center">
-                                <span className="h2">Activo Fijo</span>
+                                <span className="h2">Créditos</span>
                             </Col>
                         </Row>
                         <Row>
@@ -42,12 +44,12 @@ class ActivoFijo extends React.Component {
                     <div className="content">
                         <Row className="pb-4">
                             <Col lg="12" md="12" sm="12" className="text-center">
-                                <span className="h2">Activo Fijo</span>
+                                <span className="h2">Créditos</span>
                             </Col>
                         </Row>
                         <Row>
                             <Col lg="12" md="12" sm="12">
-                                <FormActivoFijo mostrar={this.toggleOpc} opc={{opc:0}}/>
+                                <FormCredito mostrar={this.toggleOpc} opc={{opc:0}}/>
                             </Col>
                         </Row>
                     </div>
@@ -59,12 +61,12 @@ class ActivoFijo extends React.Component {
                     <div className="content">
                         <Row className="pb-4">
                             <Col lg="12" md="12" sm="12" className="text-center">
-                                <span className="h2">Activo Fijo</span>
+                                <span className="h2">Créditos</span>
                             </Col>
                         </Row>
                         <Row>
                             <Col lg="12" md="12" sm="12">
-                                 <ListaActivoFijo mostrar={this.toggleOpc} opc={{opc:0}}/>
+                                <ListaEmpleado mostrar={this.toggleOpc} opc={{opc:0}}/>
                             </Col>
                         </Row>
                     </div>
@@ -74,4 +76,4 @@ class ActivoFijo extends React.Component {
     };
 }
 
-export  {ActivoFijo};
+export default Creditos;

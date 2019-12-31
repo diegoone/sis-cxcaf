@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 
 
-function FormTipoActivo({mostrar, opc}) {
+function ElementsTipoActivo({mostrar, opc}) {
     return (
         <>
             <Row>
@@ -38,4 +38,4 @@ function FormTipoActivo({mostrar, opc}) {
         </>
     );
 }
-export default FormTipoActivo;
+export { ElementsTipoActivo };

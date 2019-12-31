@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 
 
-function FormMarca({mostrar, opc}) {
+function ElementsMarca({mostrar, opc}) {
     return (
         <>
             <Row>
@@ -32,4 +32,4 @@ function FormMarca({mostrar, opc}) {
         </>
     );
 }
-export default FormMarca;
+export {ElementsMarca};

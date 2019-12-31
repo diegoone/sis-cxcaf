@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 
 
-function FormDepartamento({mostrar, opc}) {
+function ElementsDepartamento({mostrar, opc}) {
     return (
         <>
             <Row>
@@ -38,4 +38,4 @@ function FormDepartamento({mostrar, opc}) {
         </>
     );
 }
-export default FormDepartamento;
+export {ElementsDepartamento};
