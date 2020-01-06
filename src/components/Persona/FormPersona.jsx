@@ -1,6 +1,6 @@
 import React from "react";
 import "../../assets/css/paper-dashboard.css";
-import {ElementsProfesion} from "components/Profesion/FormProfesion";
+import { ElementsProfesion } from "components/Profesion/FormProfesion";
 import {
     FormGroup,
     CustomInput,
@@ -10,7 +10,9 @@ import {
     Label,
 } from "reactstrap";
 
-function ElementsPersona({ mostrar, opc }) {
+function ElementsPersona(props) {
+
+    const { mostrar, opc } = props;
     return (
         <>
             <Row>
@@ -19,6 +21,7 @@ function ElementsPersona({ mostrar, opc }) {
                         <label>DUI</label>
                         <Input
                             name="dui"
+                            innerRef={props.refer.dui}
                             defaultValue=""
                             placeholder="########-#"
                             type="text"
@@ -31,6 +34,7 @@ function ElementsPersona({ mostrar, opc }) {
                     <FormGroup>
                         <label>Nombres</label>
                         <Input name="nombres"
+                            innerRef={props.refer.nombres}
                             defaultValue=""
                             placeholder="Digite su nombre"
                             type="text"
@@ -42,7 +46,9 @@ function ElementsPersona({ mostrar, opc }) {
                         <label>Apellidos</label>
                         <Input
                             name="apellidos"
+                            innerRef={props.refer.apellidos}
                             defaultValue=""
+
                             placeholder="Digite sus apellidos"
                             type="text"
                         />
@@ -55,11 +61,11 @@ function ElementsPersona({ mostrar, opc }) {
                         <label>Sexo</label>
                         <FormGroup check>
                             <Label check>
-                                <Input type="radio" name="genero" value="masculino" />
+                                <Input type="radio" innerRef={props.refer.genero} name="genero" value="masculino" />
                                 Masculino
                                         </Label>
                             <Label check>
-                                <Input type="radio" name="genero" value="femenino" />
+                                <Input type="radio" innerRef={props.refer.genero} name="genero" value="femenino" />
                                 Femenino
                                         </Label>
                         </FormGroup>
@@ -69,13 +75,12 @@ function ElementsPersona({ mostrar, opc }) {
                     <FormGroup>
                         <label >Estado civil</label>
                         <FormGroup>
-                            <CustomInput type="select" name="estadoCivil">
+                            <CustomInput type="select" innerRef={props.refer.estadoCivil} name="estadoCivil">
                                 <option value="">Seleccione...</option>
-                                <option value="soltero/a">soltero/a</option>
-                                <option value="casado/a">casado/a</option>
-                                <option value="acompañado/a">acompañado/a</option>
-                                <option value="viudo/a">viudo/a</option>
-                                <option value="divorciado/a">divorciado/a</option>
+                                {props.estadoCivil.map(item => (
+                                    <option value={item}>{item}</option>
+                                )
+                                )}
                             </CustomInput>
                         </FormGroup>
                     </FormGroup>
@@ -87,6 +92,7 @@ function ElementsPersona({ mostrar, opc }) {
                         <label>NIT</label>
                         <Input
                             name="nit"
+                            innerRef={props.refer.nit}
                             defaultValue=""
                             placeholder="####-######-###-#"
                             type="text"
@@ -96,7 +102,11 @@ function ElementsPersona({ mostrar, opc }) {
                 <Col className="pl-1" md="4">
                     <FormGroup>
                         <label>Fecha de Nacimiento</label>
-                        <Input name="fechaN" placeholder="dd/MM/yyyy" type="Date" />
+                        <Input
+                            name="fechaN"
+                            innerRef={props.refer.fechaN}
+                            placeholder="dd/MM/yyyy"
+                            type="Date" />
                     </FormGroup>
                 </Col>
             </Row>
@@ -107,6 +117,7 @@ function ElementsPersona({ mostrar, opc }) {
                         <label>Teléfono</label>
                         <Input
                             name="telefono"
+                            innerRef={props.refer.telefono}
                             defaultValue=""
                             placeholder="####-####"
                             type="text"
@@ -117,6 +128,7 @@ function ElementsPersona({ mostrar, opc }) {
                     <FormGroup>
                         <label>Nº de ISSS</label>
                         <Input
+                            innerRef={props.refer.isss}
                             name="isss"
                             placeholder="" type="text" />
                     </FormGroup>
@@ -128,6 +140,7 @@ function ElementsPersona({ mostrar, opc }) {
                         <label>Salario</label>
                         <Input
                             name="salario"
+                            innerRef={props.refer.salario}
                             defaultValue=""
                             placeholder=""
                             type="text"
@@ -138,12 +151,12 @@ function ElementsPersona({ mostrar, opc }) {
 
                     <label>Zona:</label>
                     <FormGroup>
-                        <CustomInput type="select" name="zona">
+                        <CustomInput type="select" innerRef={props.refer.zona} name="zona">
                             <option value=""> Seleccione </option>
-                            <option value="occidental">Occidental</option>
-                            <option value="central">Central</option>
-                            <option value="paracentral">Paracentral</option>
-                            <option value="oriental">Oriental</option>
+                            {props.zona.map(item => (
+                                <option value={item}>{item}</option>
+                            )
+                            )}
                         </CustomInput>
                     </FormGroup>
                 </Col>
@@ -153,7 +166,9 @@ function ElementsPersona({ mostrar, opc }) {
                     <FormGroup>
                         <label>Direcciòn</label>
                         <FormGroup>
-                            <textarea name="direccion" cols="30" rows="10" className="form-control"></textarea>
+                            <Input type="textarea" name="direccion"
+                                innerRef={props.refer.direccion}
+                                cols="30" rows="10" className="form-control" />
                         </FormGroup>
                     </FormGroup>
                 </Col>
@@ -163,4 +178,4 @@ function ElementsPersona({ mostrar, opc }) {
     );
 }
 
-export {ElementsPersona};
+export { ElementsPersona };
