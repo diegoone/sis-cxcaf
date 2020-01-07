@@ -2,7 +2,7 @@
 import React from "react";
 import "../../assets/css/paper-dashboard.css";
 
-import { ElementsMarca } from "components/Marca/FormMarca";
+import { SelectMarca, FormMarca } from "components/Marca/FormMarca";
 import { ElementsSucursal } from "components/Sucursal/FormSucursal";
 import { ElementsDepartamento } from "components/Departamento/FormDepartamento";
 import { ElementsTipoActivo } from "components/TipoActivo/FormTipoActivo";
@@ -35,12 +35,29 @@ function FormActivoFijo({ mostrar, opc }) {
                 </CardHeader>
                 <CardBody>
                     <Form>
-                        <ElementsActivoFijo mostrar={mostrar} opc={opc}/>
-                        <SelectEmpleado mostrar={mostrar} opc={opc} />
-                        <ElementsMarca mostrar={mostrar} opc={opc} />
-                        <ElementsSucursal mostrar={mostrar} opc={opc} />
-                        <ElementsDepartamento mostrar={mostrar} opc={opc} />
-                        <ElementsTipoActivo mostrar={mostrar} opc={opc} />
+                        <div>
+                            <ElementsActivoFijo />
+                        </div>
+                        <div>
+                            <SelectEmpleado />
+                        </div>
+                        <Row>
+                            <Col className='pr-1' md='4'>
+                                <FormGroup>
+                                    <SelectMarca />
+                                    <FormMarca />
+                                </FormGroup>
+                            </Col>
+                            <Col className='pr-1' md='4'>
+                                <ElementsSucursal />
+                            </Col>
+                            <Col className='pr-1' md='4'>
+                                <ElementsDepartamento />
+                            </Col>
+                            <Col className='pr-1' md='4'>
+                                <ElementsTipoActivo />
+                            </Col>
+                        </Row>
                     </Form>
                 </CardBody>
             </Card>

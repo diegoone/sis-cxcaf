@@ -15,38 +15,145 @@ import {
     Col,
     Label,
 } from "reactstrap";
+class FormCliente extends React.Component {
+    constructor(props) {
+        super(props);
 
-function FormCliente({ mostrar, opc }) {
-    return (
-        <>
-            <Card className="card-user">
-                <CardHeader>
-                    <Row>
-                        <Col md="1">
-                            <div className="icon-big text-center icon-success mt-3">
-                                <i className="nc-icon nc-minimal-left puntero" onClick={() => {
-                                    mostrar(opc);
-                                }} />
-                            </div>
-                        </Col>
-                        <Col md="11">
-                            <CardTitle tag="h5" className="text center" >Registro de Cliente</CardTitle>
-                        </Col>
-                    </Row>
-                </CardHeader>
-                <CardBody>
-                    <Form>
-                        <ElementsCliente mostrar={mostrar} opc={opc}/>
-                    </Form>
-                </CardBody>
-            </Card>
-        </>
-    );
+        this.state = {
+            isLoaded: false,
+            error: null,
+            zona: [],
+            estadoCivil: [],
+            tipo: [],
+            listProfesion: [], 
+        };
+
+        this.data = {
+            nombres: null,
+            apellidos: null,
+            dui: null,
+            telefono: null,
+            genero: null,
+            salario: null,
+            nit: null,
+            fechaN: null,
+            direccion: null,
+            zona: null,
+            estadoCivil: null,
+            idProfesion: null,
+            tipo: null,
+            clasificacion: null,
+            username: null,
+            password: null,
+
+        };
+        for (var prop in this.data) {
+            if (Object.prototype.hasOwnProperty.call(this.data, prop)) {
+                this.data[prop] = React.createRef();
+            }
+        }
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    handleSubmit(event) {
+        event.preventDefault();
+        var obj = {};
+        for (var prop in this.data) {
+            if (Object.prototype.hasOwnProperty.call(this.data, prop)) {
+                console.log(prop, this.data[prop].current);
+                obj[prop] = this.state[prop].current.value;
+            }
+        }
+
+        console.log(this.data);
+    }
+    componentDidMount() {
+        fetch("http://localhost:4000/api/cliente/enum")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        zona: result.zona,
+                        tipo: result.tipo,
+                        estadoCivil: result.estadocivil
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            );//end fetch
+            fetch("http://localhost:4000/api/profesion")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        listProfesion: result,
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            );//end fetch
+    }
+
+    render() {
+        const { mostrar, opc } = this.props;
+        return (
+            <>
+                <Card className="card-user">
+                    <CardHeader>
+                        <Row>
+                            <Col md="1">
+                                <div className="icon-big text-center icon-success mt-3">
+                                    <i className="nc-icon nc-minimal-left puntero" onClick={() => {
+                                        mostrar(opc);
+                                    }} />
+                                </div>
+                            </Col>
+                            <Col md="11">
+                                <CardTitle tag="h5" className="text center" >Registro de Cliente</CardTitle>
+                            </Col>
+                        </Row>
+                    </CardHeader>
+                    <CardBody>
+                        <Form onSubmit={this.handleSubmit}>
+                            <ElementsCliente
+                                zona={this.state.zona}
+                                isLoaded={this.state.isLoaded}
+                                estadoCivil={this.state.estadoCivil}
+                                tipo={this.state.tipo}
+                                listProfesion={this.state.listProfesion}
+                                refer={this.data}
+                                mostrar={mostrar}
+                                opc={opc} />
+                        </Form>
+                    </CardBody>
+                </Card>
+            </>
+        );
+    }
 }
-function ElementsCliente({ mostrar, opc }) {
+
+function ElementsCliente(props) {
+    console.log(props);
+    const { mostrar, opc } = props;
     return (
         <>
-            <ElementsPersona mostrar={mostrar} opc={opc} />
+            <ElementsPersona
+
+                zona={props.zona}
+                isLoaded={props.isLoaded}
+                estadoCivil={props.estadoCivil}
+                listProfesion={props.listProfesion}
+                refer={props.refer}
+                mostrar={mostrar} opc={opc} />
             <hr />
             <Row>
                 <Col className="pr-1" md="4">
@@ -54,8 +161,10 @@ function ElementsCliente({ mostrar, opc }) {
                     <FormGroup>
                         <CustomInput type="select" name="tipo">
                             <option value="">Seleccione ...</option>
-                            <option value="Persona Natural">Persona Natural</option>
-                            <option value="Persona Jurídica">Persona Jurídica</option>
+                            {props.tipo.map(item => (
+                                <option value={item}>{item}</option>
+                            )
+                            )}
                         </CustomInput>
                     </FormGroup>
 

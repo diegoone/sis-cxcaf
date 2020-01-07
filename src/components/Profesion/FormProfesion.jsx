@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "../../assets/css/paper-dashboard.css";
 import {
     FormGroup,
@@ -7,13 +7,13 @@ import {
     Row,
     Col,
     Label,
+    Form, Button, Modal, ModalBody, ModalHeader, ModalFooter,
 } from "reactstrap";
 
-class Profesion extends React.Component {
+class FormProfesion extends React.Component {
     constructor(props) {
         super(props);
         this.data = {
-            id: null,
             nombre: null,
         };
         for (var prop in this.data) {
@@ -21,61 +21,72 @@ class Profesion extends React.Component {
                 this.data[prop] = React.createRef();
             }
         }
-        this.handleSubmit = this.handleSubmit.bind(this)
-
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleSubmit(event) {
         event.preventDefault();
+        var obj = {};
+        for (var prop in this.data) {
+            if (Object.prototype.hasOwnProperty.call(this.data, prop)) {
+                console.log(prop, this.data[prop].current);
+                obj[prop] = this.state[prop].current.value;
+            }
+        }
 
+        console.log(this.data);
+    }
+    render() {
+        const ModalProfesion = (props) => {
+            const {
+                buttonLabel,
+                className
+            } = props;
+            const [modal, setModal] = useState(false);
+            const toggle = () => setModal(!modal);
+            return (
+                <>
+                    <Button color="danger" onClick={toggle}>Crear<i className='fas fa-plus'></i></Button>
+                    <Modal isOpen={modal} toggle={toggle} className={className}>
+                        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                        <ModalBody>
+                            <Form onSubmit={this.handleSubmit}>
+                                <ElementsProfesion />
+                            </Form>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button color="primary" onClick={toggle}>Guardar</Button>{' '}
+                            <Button color="secondary" onClick={toggle}>Cancelar</Button>
+                        </ModalFooter>
+                    </Modal>
+                </>
+            );
+        }
+
+        return (
+            <ModalProfesion buttonLabel="abrir" />
+        );
     }
 }
-function ElementsProfesion(props) {
 
-    const { mostrar, opc } = props;
+
+
+
+function ElementsProfesion() {
     return (
         <>
-            <Row>
-                <Col className="pr-1" md="4">
-                    <FormGroup>
-                        <label>Nueva profesión </label>
-                        <Input defaultValue="" name="profesion.nombre" type="text" placeholder="Aaaa" />
-                    </FormGroup>
-                </Col>
-            </Row>
+            <label>Nueva profesión </label>
+            <Input defaultValue="" name="profesion.nombre" type="text" placeholder="Aaaa" />
         </>
     );
 }
-function SelectProfesion() {
+const SelectProfesion = (props) => {
     return (
-        <Col className="pr-1" md="4">
-            <label>Profeciòn u oficio</label>
-            <FormGroup>
-                <CustomInput type="select" name="idProfesion">
-                    <option value=""> Seleccione </option>
-                </CustomInput>
-            </FormGroup>
-        </Col>
+        <>
+            <label>Profesión</label>
+            <CustomInput type="select" name="idMarca">
+                <option value=""> Seleccione </option>
+            </CustomInput>
+        </>
     );
 }
-function fetchProfesion() {
-    fetch("http://localhost:4000/items")
-        .then(res => res.json())
-        .then(
-            (result) => {
-                this.setState({
-                    isLoaded: true,
-                    items: result.items
-                });
-            },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
-            (error) => {
-                this.setState({
-                    isLoaded: true,
-                    error
-                });
-            }
-        )
-}
-export { ElementsProfesion, SelectProfesion };
+export { FormProfesion, SelectProfesion };

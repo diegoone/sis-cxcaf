@@ -25,7 +25,7 @@ class FormEmpleado extends React.Component {
             zona: [],
             estadoCivil: [],
             cargo: [],
-            rol: [],
+            listProfesion:[],
         };
 
         this.data = {
@@ -35,19 +35,17 @@ class FormEmpleado extends React.Component {
             telefono: null,
             genero: null,
             salario: null,
-            idProfesion: null,
             nit: null,
             fechaN: null,
             direccion: null,
             zona: null,
+            dui: null,
             estadoCivil: null,
-            idUsuario: null,
+            idProfesion: null,
             cargo: null,
-            idPersona: null,
             username: null,
             password: null,
-            idRol: null,
-        };
+        };//
         for (var prop in this.data) {
             if (Object.prototype.hasOwnProperty.call(this.data, prop)) {
                 this.data[prop] = React.createRef();
@@ -61,21 +59,22 @@ class FormEmpleado extends React.Component {
         for (var prop in this.data) {
             if (Object.prototype.hasOwnProperty.call(this.data, prop)) {
                 console.log(prop, this.data[prop].current);
-                //obj[prop] = this.state[prop].current.value;
+                obj[prop] = this.state[prop].current.value;
             }
         }
 
         console.log(this.data);
-        alert(JSON.stringify());
     }
     componentDidMount() {
-        fetch("http://localhost:4000/api/empleado/zona")
+        fetch("http://localhost:4000/api/empleado/enum")
             .then(res => res.json())
             .then(
                 (result) => {
                     this.setState({
                         isLoaded: true,
-                        zona: result
+                        zona: result.zona,
+                        cargo: result.cargo,
+                        estadoCivil: result.estadocivil
                     });
                 },
                 (error) => {
@@ -85,13 +84,13 @@ class FormEmpleado extends React.Component {
                     });
                 }
             );//end fetch
-        fetch("http://localhost:4000/api/empleado/cargo")
+        fetch("http://localhost:4000/api/profesion")
             .then(res => res.json())
             .then(
                 (result) => {
                     this.setState({
                         isLoaded: true,
-                        cargo: result
+                        listProfesion: result,
                     });
                 },
                 (error) => {
@@ -101,22 +100,6 @@ class FormEmpleado extends React.Component {
                     });
                 }
             );//end fetch
-        fetch("http://localhost:4000/api/empleado/estadoCivil")
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        estadoCivil: result
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            );//end fetch   
     }
     render() {
         const { mostrar, opc } = this.props;
@@ -144,6 +127,7 @@ class FormEmpleado extends React.Component {
                                 zona={this.state.zona}
                                 cargo={this.state.cargo}
                                 estadoCivil={this.state.estadoCivil}
+                                listProfesion={this.state.listProfesion}
                                 refer={this.data}
                                 mostrar={mostrar}
                                 opc={opc} />
@@ -169,6 +153,7 @@ function ElementsEmpleado(props) {
                 <ElementsPersona refer={props.refer}
                     zona={props.zona}
                     estadoCivil={props.estadoCivil}
+                    listProfesion={props.listProfesion}
                     mostrar={mostrar}
                     opc={opc} />
                 <hr />

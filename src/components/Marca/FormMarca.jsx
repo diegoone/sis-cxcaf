@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../assets/css/paper-dashboard.css";
 import {
     FormGroup,
@@ -6,30 +6,92 @@ import {
     Input,
     Row,
     Col,
+    Form,
     Label,
+    Modal,
+    ModalHeader,
+    ModalBody, ModalFooter,
+    Button,
 } from "reactstrap";
 
+class FormMarca extends React.Component {
+    constructor(props) {
+        super(props);
+        this.data = {
+            nombre: null,
+        };
+        for (var prop in this.data) {
+            if (Object.prototype.hasOwnProperty.call(this.data, prop)) {
+                this.data[prop] = React.createRef();
+            }
+        }
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    handleSubmit(event) {
+        event.preventDefault();
+        var obj = {};
+        for (var prop in this.data) {
+            if (Object.prototype.hasOwnProperty.call(this.data, prop)) {
+                console.log(prop, this.data[prop].current);
+                obj[prop] = this.state[prop].current.value;
+            }
+        }
 
-function ElementsMarca({mostrar, opc}) {
+        console.log(this.data);
+    }
+    render() {
+        const ModalMarca = (props) => {
+            const {
+                buttonLabel,
+                className
+            } = props;
+            const [modal, setModal] = useState(false);
+            const toggle = () => setModal(!modal);
+            return (
+                <>
+                    <Button color="danger" onClick={toggle}>Crear<i className='fas fa-plus'></i></Button>
+                    <Modal isOpen={modal} toggle={toggle} className={className}>
+                        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                        <ModalBody>
+                            <Form onSubmit={this.handleSubmit}>
+                                <ElementsMarca />
+                            </Form>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button color="primary" onClick={toggle}>Guardar</Button>{' '}
+                            <Button color="secondary" onClick={toggle}>Cancelar</Button>
+                        </ModalFooter>
+                    </Modal>
+                </>
+            );
+        }
+
+        return (
+            <ModalMarca buttonLabel="abrir" />
+        );
+    }
+}
+
+
+
+
+function ElementsMarca() {
     return (
         <>
-            <Row>
-                <Col className="pr-1" md="4">
-                    <label>Marca</label>
-                    <FormGroup>
-                        <CustomInput type="select" name="idMarca">
-                            <option value=""> Seleccione </option>
-                        </CustomInput>
-                    </FormGroup>
-                </Col>
-                <Col className="pr-1" md="4">
-                    <FormGroup>
-                        <label>Nueva marca </label>
-                        <Input defaultValue="" name="marca.nombre" type="text" placeholder="Aaaa" />
-                    </FormGroup>
-                </Col>
-            </Row>
+            <label>Nueva marca </label>
+            <Input defaultValue="" name="marca.nombre" type="text" placeholder="Aaaa" />
         </>
     );
 }
-export {ElementsMarca};
+const SelectMarca = (props) => {
+
+    return (
+        <>
+            <label>Marca</label>
+            <CustomInput type="select" name="idMarca">
+                <option value=""> Seleccione </option>
+            </CustomInput>
+        </>
+    );
+}
+export { ElementsMarca, FormMarca, SelectMarca };

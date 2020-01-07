@@ -1,6 +1,6 @@
 import React from "react";
 import "../../assets/css/paper-dashboard.css";
-import { ElementsProfesion } from "components/Profesion/FormProfesion";
+import { FormProfesion, SelectProfesion } from "components/Profesion/FormProfesion";
 import {
     FormGroup,
     CustomInput,
@@ -110,8 +110,14 @@ function ElementsPersona(props) {
                     </FormGroup>
                 </Col>
             </Row>
-            <ElementsProfesion mostrar={mostrar} opc={opc} />
+
             <Row>
+                <Col className='pr-1' md='4'>
+                    <FormGroup>
+                        <SelectProfesion />
+                        <FormProfesion />
+                    </FormGroup>
+                </Col>
                 <Col className="pr-1" md="4">
                     <FormGroup>
                         <label>Teléfono</label>
