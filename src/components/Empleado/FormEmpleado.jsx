@@ -25,7 +25,7 @@ class FormEmpleado extends React.Component {
             zona: [],
             estadoCivil: [],
             cargo: [],
-            listProfesion:[],
+            listIdProfesion:[],
         };
 
         this.data = {
@@ -90,7 +90,7 @@ class FormEmpleado extends React.Component {
                 (result) => {
                     this.setState({
                         isLoaded: true,
-                        listProfesion: result,
+                        listIdProfesion: result,
                     });
                 },
                 (error) => {
@@ -127,7 +127,7 @@ class FormEmpleado extends React.Component {
                                 zona={this.state.zona}
                                 cargo={this.state.cargo}
                                 estadoCivil={this.state.estadoCivil}
-                                listProfesion={this.state.listProfesion}
+                                listIdProfesion={this.state.listIdProfesion}
                                 refer={this.data}
                                 mostrar={mostrar}
                                 opc={opc} />
@@ -153,7 +153,7 @@ function ElementsEmpleado(props) {
                 <ElementsPersona refer={props.refer}
                     zona={props.zona}
                     estadoCivil={props.estadoCivil}
-                    listProfesion={props.listProfesion}
+                    listIdProfesion={props.listIdProfesion}
                     mostrar={mostrar}
                     opc={opc} />
                 <hr />

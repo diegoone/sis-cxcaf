@@ -25,7 +25,7 @@ class FormCliente extends React.Component {
             zona: [],
             estadoCivil: [],
             tipo: [],
-            listProfesion: [], 
+            listIdProfesion: [], 
         };
 
         this.data = {
@@ -89,9 +89,10 @@ class FormCliente extends React.Component {
             .then(res => res.json())
             .then(
                 (result) => {
+                    console.log(result);
                     this.setState({
                         isLoaded: true,
-                        listProfesion: result,
+                        listIdProfesion: result,
                     });
                 },
                 (error) => {
@@ -129,7 +130,7 @@ class FormCliente extends React.Component {
                                 isLoaded={this.state.isLoaded}
                                 estadoCivil={this.state.estadoCivil}
                                 tipo={this.state.tipo}
-                                listProfesion={this.state.listProfesion}
+                                listIdProfesion={this.state.listIdProfesion}
                                 refer={this.data}
                                 mostrar={mostrar}
                                 opc={opc} />
@@ -151,7 +152,7 @@ function ElementsCliente(props) {
                 zona={props.zona}
                 isLoaded={props.isLoaded}
                 estadoCivil={props.estadoCivil}
-                listProfesion={props.listProfesion}
+                listIdProfesion={props.listIdProfesion}
                 refer={props.refer}
                 mostrar={mostrar} opc={opc} />
             <hr />

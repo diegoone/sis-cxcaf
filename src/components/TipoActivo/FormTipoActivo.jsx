@@ -10,18 +10,10 @@ import {
 } from "reactstrap";
 
 
-function ElementsTipoActivo({mostrar, opc}) {
+function FormTipoActivo() {
     return (
         <>
             <Row>
-                <Col className="pr-1" md="4">
-                    <label>Tipo activo</label>
-                    <FormGroup>
-                        <CustomInput type="select" name="idTipoActivo">
-                            <option value=""> Seleccione </option>
-                        </CustomInput>
-                    </FormGroup>
-                </Col>
                 <Col className="pr-1" md="4">
                     <FormGroup>
                         <label>Nueva tipo activo </label>
@@ -38,4 +30,18 @@ function ElementsTipoActivo({mostrar, opc}) {
         </>
     );
 }
-export { ElementsTipoActivo };
+const SelectTipoActivo = (props) => {
+    return (
+        <>
+            <label>Tipo activo</label>
+            <CustomInput type="select" name="idTipoActivo">
+                <option value=""> Seleccione </option>
+                {props.listIdTipoActivo.map(item =>
+                    <option value={item.id}>{item.nombre}</option>
+                )
+                }
+                </CustomInput>
+        </>
+    );
+}
+export { SelectTipoActivo, FormTipoActivo };

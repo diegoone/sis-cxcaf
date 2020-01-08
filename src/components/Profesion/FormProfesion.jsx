@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "../../assets/css/paper-dashboard.css";
 import {
     FormGroup,
@@ -83,8 +83,12 @@ const SelectProfesion = (props) => {
     return (
         <>
             <label>Profesión</label>
-            <CustomInput type="select" name="idMarca">
+            <CustomInput type="select" name="idProfesion">
                 <option value=""> Seleccione </option>
+                {props.listIdProfesion.map(item => (
+                    <option value={item.id}>{item.nombre}</option>
+                )
+                )}
             </CustomInput>
         </>
     );

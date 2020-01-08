@@ -9,33 +9,44 @@ import {
     Label,
 } from "reactstrap";
 
+class FormDepartamento extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (
+            <>
+                <Row>
+                    <Col className="pr-1" md="4">
+                        <FormGroup>
+                            <label>Nueva departamento </label>
+                            <Input defaultValue="" name="departamento.nombre" type="text" placeholder="Aaaa" />
+                        </FormGroup>
+                    </Col>
+                    <Col className="pr-1" md="4">
+                        <FormGroup>
+                            <label>Código </label>
+                            <Input defaultValue="" name="departamento.codigo" type="text" placeholder="Aaaa" />
+                        </FormGroup>
+                    </Col>
+                </Row>
+            </>
+        );
+    }
+}
 
-function ElementsDepartamento({mostrar, opc}) {
+const SelectDepartamento = (props) => {
     return (
         <>
-            <Row>
-                <Col className="pr-1" md="4">
-                    <label>departamento</label>
-                    <FormGroup>
-                        <CustomInput type="select" name="idDepartamento">
-                            <option value=""> Seleccione </option>
-                        </CustomInput>
-                    </FormGroup>
-                </Col>
-                <Col className="pr-1" md="4">
-                    <FormGroup>
-                        <label>Nueva departamento </label>
-                        <Input defaultValue="" name="departamento.nombre" type="text" placeholder="Aaaa" />
-                    </FormGroup>
-                </Col>
-                <Col className="pr-1" md="4">
-                    <FormGroup>
-                        <label>Código </label>
-                        <Input defaultValue="" name="departamento.codigo" type="text" placeholder="Aaaa" />
-                    </FormGroup>
-                </Col>
-            </Row>
+            <label>departamento</label>
+            <CustomInput type="select" name="idDepartamento">
+                <option value=""> Seleccione </option>
+                {props.listIdDepartamento.map(item =>
+                    <option value={item.id}>{item.nombre}</option>
+                )}
+            </CustomInput>
         </>
     );
+
 }
-export {ElementsDepartamento};
+export { FormDepartamento, SelectDepartamento };

@@ -3,9 +3,9 @@ import React from "react";
 import "../../assets/css/paper-dashboard.css";
 
 import { SelectMarca, FormMarca } from "components/Marca/FormMarca";
-import { ElementsSucursal } from "components/Sucursal/FormSucursal";
-import { ElementsDepartamento } from "components/Departamento/FormDepartamento";
-import { ElementsTipoActivo } from "components/TipoActivo/FormTipoActivo";
+import { FormSucursal, SelectSucursal } from "components/Sucursal/FormSucursal";
+import { FormDepartamento, SelectDepartamento } from "components/Departamento/FormDepartamento";
+import { SelectTipoActivo, FormTipoActivo } from "components/TipoActivo/FormTipoActivo";
 import { SelectEmpleado } from "components/Empleado/FormEmpleado";
 
 import {
@@ -16,54 +16,142 @@ import {
     CustomInput, Input, Row, Col,
     Label
 } from "reactstrap";
+class FormActivoFijo extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            listIdMarca: [],
+            listIdSucursal: [],
+            listIdDepartamento: [],
+            listIdTipoActivo: [],
+        };
+    }
+    componentDidMount() {
+        fetch("http://localhost:4000/api/sucursal/")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        listIdSucursal: result
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            );//end fetch
+        fetch("http://localhost:4000/api/marca/")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        listIdMarca: result
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            );//end fetch
+        fetch("http://localhost:4000/api/departamento/")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        listIdDepartamento: result
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            );//end fetch
+        fetch("http://localhost:4000/api/tipoactivo/")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        listIdTipoActivo: result
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            );//end fetch
+    }
+    render() {
+        const { mostrar, opc } = this.props;
 
-function FormActivoFijo({ mostrar, opc }) {
-    return (
-        <>
-            <Card className="card-user">
-                <CardHeader>
-                    <Row>
-                        <Col md="1">
-                            <div className="icon-big text-center icon-success mt-3">
-                                <i className="nc-icon nc-minimal-left puntero" onClick={() => mostrar(opc)}></i>
-                            </div>
-                        </Col>
-                        <Col md="11">
-                            <CardTitle tag="h5" className="text-center">Registro de Activo Fijo</CardTitle>
-                        </Col>
-                    </Row>
-                </CardHeader>
-                <CardBody>
-                    <Form>
-                        <div>
-                            <ElementsActivoFijo />
-                        </div>
-                        <div>
-                            <SelectEmpleado />
-                        </div>
+        return (
+            <>
+                <Card className="card-user">
+                    <CardHeader>
                         <Row>
-                            <Col className='pr-1' md='4'>
-                                <FormGroup>
-                                    <SelectMarca />
-                                    <FormMarca />
-                                </FormGroup>
+                            <Col md="1">
+                                <div className="icon-big text-center icon-success mt-3">
+                                    <i className="nc-icon nc-minimal-left puntero" onClick={() => mostrar(opc)}></i>
+                                </div>
                             </Col>
-                            <Col className='pr-1' md='4'>
-                                <ElementsSucursal />
-                            </Col>
-                            <Col className='pr-1' md='4'>
-                                <ElementsDepartamento />
-                            </Col>
-                            <Col className='pr-1' md='4'>
-                                <ElementsTipoActivo />
+                            <Col md="11">
+                                <CardTitle tag="h5" className="text-center">Registro de Activo Fijo</CardTitle>
                             </Col>
                         </Row>
-                    </Form>
-                </CardBody>
-            </Card>
-        </>
-    );
+                    </CardHeader>
+                    <CardBody>
+                        <Form>
+                            <div>
+                                <ElementsActivoFijo />
+                            </div>
+                            <div>
+                                <SelectEmpleado />
+                            </div>
+                            <Row>
+                                <Col className='pr-1' md='4'>
+                                    <FormGroup>
+                                        <SelectMarca listIdMarca={this.state.listIdMarca} />
+                                        <FormMarca />
+                                    </FormGroup>
+                                </Col>
+                                <Col className='pr-1' md='4'>
+                                     <FormGroup>
+                                        <SelectSucursal listIdSucursal={this.state.listIdSucursal} />
+                                        <FormSucursal />
+                                    </FormGroup> 
+                                </Col>
+                                <Col className='pr-1' md='4'>
+                                    <FormGroup>
+                                        <SelectDepartamento listIdDepartamento={this.state.listIdDepartamento} />
+                                        <FormDepartamento />
+                                    </FormGroup>
+                                </Col>
+                                <Col className='pr-1' md='4'>
+                                    <FormGroup>
+                                        <SelectTipoActivo listIdTipoActivo={this.state.listIdTipoActivo}/>
+                                        <FormTipoActivo />
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+                        </Form>
+                    </CardBody>
+                </Card>
+            </>
+        );
+    }
 }
+
 function ElementsActivoFijo({ mostrar, opc }) {
     return (
         <>

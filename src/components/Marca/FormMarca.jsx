@@ -90,6 +90,9 @@ const SelectMarca = (props) => {
             <label>Marca</label>
             <CustomInput type="select" name="idMarca">
                 <option value=""> Seleccione </option>
+                {props.listIdMarca.map(item =>
+                    <option value={item.id}>{item.nombre}</option>
+                )}
             </CustomInput>
         </>
     );

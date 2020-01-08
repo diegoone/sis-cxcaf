@@ -10,18 +10,10 @@ import {
 } from "reactstrap";
 
 
-function ElementsSucursal({mostrar, opc}) {
+function FormSucursal() {
     return (
         <>
             <Row>
-                <Col className="pr-1" md="4">
-                    <label>Sucursal</label>
-                    <FormGroup>
-                        <CustomInput type="select" name="idSucursal">
-                            <option value=""> Seleccione </option>
-                        </CustomInput>
-                    </FormGroup>
-                </Col>
                 <Col className="pr-1" md="4">
                     <FormGroup>
                         <label>Nueva sucursal </label>
@@ -38,4 +30,18 @@ function ElementsSucursal({mostrar, opc}) {
         </>
     );
 }
-export { ElementsSucursal};
+const SelectSucursal = (props) => {
+    return (
+        <>
+            <label>Sucursal</label>
+            <CustomInput type="select" name="idSucursal">
+                <option value=""> Seleccione </option>
+                 {props.listIdSucursal.map(item =>
+                    <option value={item.id}>{item.nombre}</option>
+                )
+                }
+            </CustomInput>
+        </>
+    );
+}
+export { FormSucursal, SelectSucursal };
