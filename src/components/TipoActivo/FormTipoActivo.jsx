@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../assets/css/paper-dashboard.css";
 import {
     FormGroup,
@@ -6,27 +6,65 @@ import {
     Input,
     Row,
     Col,
-    Label,
+    Form,
+    Label, Modal,
+    ModalHeader,
+    ModalBody, ModalFooter,
+    Button,
 } from "reactstrap";
 
 
-function FormTipoActivo() {
+class FormTipoActivo extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        const ModalTipoActivo = (props) => {
+            const {
+                buttonLabel,
+                className
+            } = props;
+            const [modal, setModal] = useState(false);
+            const toggle = () => setModal(!modal);
+            return (
+                <>
+                    <Button color="danger" onClick={toggle}>Crear<i className='fas fa-plus'></i></Button>
+                    <Modal isOpen={modal} toggle={toggle} className={className}>
+                        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                        <ModalBody>
+                            <Form onSubmit={this.handleSubmit}>
+                                <ElementsTipoActivo />
+                            </Form>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button color="primary" onClick={toggle}>Guardar</Button>{' '}
+                            <Button color="secondary" onClick={toggle}>Cancelar</Button>
+                        </ModalFooter>
+                    </Modal>
+                </>
+            );
+        }
+
+        return (
+            <ModalTipoActivo buttonLabel="abrir" />
+        );
+    }
+
+}
+function ElementsTipoActivo(props) {
     return (
         <>
-            <Row>
-                <Col className="pr-1" md="4">
-                    <FormGroup>
-                        <label>Nueva tipo activo </label>
-                        <Input defaultValue="" name="tipoActivo.nombre" type="text" placeholder="Aaaa" />
-                    </FormGroup>
-                </Col>
-                <Col className="pr-1" md="4">
-                    <FormGroup>
-                        <label>Código </label>
-                        <Input defaultValue="" name="tipoActivo.codigo" type="text" placeholder="Aaaa" />
-                    </FormGroup>
-                </Col>
-            </Row>
+            <FormGroup>
+                <label>Nueva tipo activo </label>
+                <Input defaultValue="" name="tipoActivo.nombre" type="text" placeholder="Aaaa" />
+            </FormGroup>
+            <FormGroup>
+                <label>Código </label>
+                <Input defaultValue="" name="tipoActivo.codigo" type="text" placeholder="Aaaa" />
+            </FormGroup>
+
+
+
         </>
     );
 }
@@ -40,7 +78,7 @@ const SelectTipoActivo = (props) => {
                     <option value={item.id}>{item.nombre}</option>
                 )
                 }
-                </CustomInput>
+            </CustomInput>
         </>
     );
 }

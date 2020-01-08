@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "../../assets/css/paper-dashboard.css";
 import {
     FormGroup,
@@ -6,27 +6,61 @@ import {
     Input,
     Row,
     Col,
-    Label,
+    Form,
+    Label, Modal,
+    ModalHeader,
+    ModalBody, ModalFooter,
+    Button,
 } from "reactstrap";
 
 
-function FormSucursal() {
+class FormSucursal extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        const ModalSucursal = (props) => {
+            const {
+                buttonLabel,
+                className
+            } = props;
+            const [modal, setModal] = useState(false);
+            const toggle = () => setModal(!modal);
+            return (
+                <>
+                    <Button color="danger" onClick={toggle}>Crear<i className='fas fa-plus'></i></Button>
+                    <Modal isOpen={modal} toggle={toggle} className={className}>
+                        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                        <ModalBody>
+                            <Form onSubmit={this.handleSubmit}>
+                                <ElementsSucursal />
+                            </Form>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button color="primary" onClick={toggle}>Guardar</Button>{' '}
+                            <Button color="secondary" onClick={toggle}>Cancelar</Button>
+                        </ModalFooter>
+                    </Modal>
+                </>
+            );
+        }
+
+        return (
+            <ModalSucursal buttonLabel="abrir" />
+        );
+    }
+}
+function ElementsSucursal(props) {
     return (
         <>
-            <Row>
-                <Col className="pr-1" md="4">
-                    <FormGroup>
-                        <label>Nueva sucursal </label>
-                        <Input defaultValue="" name="sucursal.nombre" type="text" placeholder="Aaaa" />
-                    </FormGroup>
-                </Col>
-                <Col className="pr-1" md="4">
-                    <FormGroup>
-                        <label>Código </label>
-                        <Input defaultValue="" name="sucursal.codigo" type="text" placeholder="Aaaa" />
-                    </FormGroup>
-                </Col>
-            </Row>
+            <FormGroup>
+                <label>Nueva sucursal </label>
+                <Input defaultValue="" name="sucursal.nombre" type="text" placeholder="Aaaa" />
+            </FormGroup>
+            <FormGroup>
+                <label>Código </label>
+                <Input defaultValue="" name="sucursal.codigo" type="text" placeholder="Aaaa" />
+            </FormGroup>
         </>
     );
 }
@@ -36,7 +70,7 @@ const SelectSucursal = (props) => {
             <label>Sucursal</label>
             <CustomInput type="select" name="idSucursal">
                 <option value=""> Seleccione </option>
-                 {props.listIdSucursal.map(item =>
+                {props.listIdSucursal.map(item =>
                     <option value={item.id}>{item.nombre}</option>
                 )
                 }

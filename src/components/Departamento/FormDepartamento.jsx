@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../assets/css/paper-dashboard.css";
 import {
     FormGroup,
@@ -6,7 +6,11 @@ import {
     Input,
     Row,
     Col,
-    Label,
+    Form,
+    Label, Modal,
+    ModalHeader,
+    ModalBody, ModalFooter,
+    Button,
 } from "reactstrap";
 
 class FormDepartamento extends React.Component {
@@ -14,27 +18,52 @@ class FormDepartamento extends React.Component {
         super(props);
     }
     render() {
+        const ModalDepartamento = (props) => {
+            const {
+                buttonLabel,
+                className
+            } = props;
+            const [modal, setModal] = useState(false);
+            const toggle = () => setModal(!modal);
+            return (
+                <>
+                    <Button color="danger" onClick={toggle}>Crear<i className='fas fa-plus'></i></Button>
+                    <Modal isOpen={modal} toggle={toggle} className={className}>
+                        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                        <ModalBody>
+                            <Form onSubmit={this.handleSubmit}>
+                                <ElementsDepartamento />
+                            </Form>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button color="primary" onClick={toggle}>Guardar</Button>{' '}
+                            <Button color="secondary" onClick={toggle}>Cancelar</Button>
+                        </ModalFooter>
+                    </Modal>
+                </>
+            );
+        }
+
         return (
-            <>
-                <Row>
-                    <Col className="pr-1" md="4">
-                        <FormGroup>
-                            <label>Nueva departamento </label>
-                            <Input defaultValue="" name="departamento.nombre" type="text" placeholder="Aaaa" />
-                        </FormGroup>
-                    </Col>
-                    <Col className="pr-1" md="4">
-                        <FormGroup>
-                            <label>Código </label>
-                            <Input defaultValue="" name="departamento.codigo" type="text" placeholder="Aaaa" />
-                        </FormGroup>
-                    </Col>
-                </Row>
-            </>
+            <ModalDepartamento buttonLabel="abrir" />
         );
     }
-}
 
+}
+function ElementsDepartamento(props) {
+    return (
+        <>
+            <FormGroup>
+                <label>Nueva departamento </label>
+                <Input defaultValue="" name="departamento.nombre" type="text" placeholder="Aaaa" />
+            </FormGroup>
+            <FormGroup>
+                <label>Código </label>
+                <Input defaultValue="" name="departamento.codigo" type="text" placeholder="Aaaa" />
+            </FormGroup>
+        </>
+    );
+}
 const SelectDepartamento = (props) => {
     return (
         <>

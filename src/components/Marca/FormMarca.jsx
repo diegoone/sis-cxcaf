@@ -78,8 +78,10 @@ class FormMarca extends React.Component {
 function ElementsMarca() {
     return (
         <>
-            <label>Nueva marca </label>
-            <Input defaultValue="" name="marca.nombre" type="text" placeholder="Aaaa" />
+            <FormGroup>
+                <label>Nueva marca </label>
+                <Input defaultValue="" name="marca.nombre" type="text" placeholder="Aaaa" />
+            </FormGroup>
         </>
     );
 }
