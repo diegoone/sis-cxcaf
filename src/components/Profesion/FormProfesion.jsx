@@ -38,7 +38,6 @@ class FormProfesion extends React.Component {
     render() {
         const ModalProfesion = (props) => {
             const {
-                buttonLabel,
                 className
             } = props;
             const [modal, setModal] = useState(false);
@@ -50,7 +49,9 @@ class FormProfesion extends React.Component {
                         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
                         <ModalBody>
                             <Form onSubmit={this.handleSubmit}>
-                                <ElementsProfesion />
+                                <ElementsProfesion 
+                                refer={this.data}
+                                />
                             </Form>
                         </ModalBody>
                         <ModalFooter>
@@ -71,11 +72,13 @@ class FormProfesion extends React.Component {
 
 
 
-function ElementsProfesion() {
+function ElementsProfesion(props) {
     return (
         <>
             <label>Nueva profesión </label>
-            <Input defaultValue="" name="profesion.nombre" type="text" placeholder="Aaaa" />
+            <Input defaultValue=""
+            innerRef={props.refer.nombre}
+            name="nombre" type="text" placeholder="Aaaa" />
         </>
     );
 }
@@ -83,7 +86,9 @@ const SelectProfesion = (props) => {
     return (
         <>
             <label>Profesión</label>
-            <CustomInput type="select" name="idProfesion">
+            <CustomInput type="select"
+            innerRef={props.refer.idProfesion}
+            name="idProfesion">
                 <option value=""> Seleccione </option>
                 {props.listIdProfesion.map(item => (
                     <option value={item.id}>{item.nombre}</option>

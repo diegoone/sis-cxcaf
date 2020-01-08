@@ -16,11 +16,15 @@ import {
 class FormDepartamento extends React.Component {
     constructor(props) {
         super(props);
+
+        this.data = {
+            nombre: null,
+            codigo: null
+        };
     }
     render() {
         const ModalDepartamento = (props) => {
             const {
-                buttonLabel,
                 className
             } = props;
             const [modal, setModal] = useState(false);
@@ -32,7 +36,7 @@ class FormDepartamento extends React.Component {
                         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
                         <ModalBody>
                             <Form onSubmit={this.handleSubmit}>
-                                <ElementsDepartamento />
+                                <ElementsDepartamento refer={props.refer}/>
                             </Form>
                         </ModalBody>
                         <ModalFooter>
@@ -45,7 +49,7 @@ class FormDepartamento extends React.Component {
         }
 
         return (
-            <ModalDepartamento buttonLabel="abrir" />
+            <ModalDepartamento refer={this.data}/>
         );
     }
 
@@ -55,11 +59,16 @@ function ElementsDepartamento(props) {
         <>
             <FormGroup>
                 <label>Nueva departamento </label>
-                <Input defaultValue="" name="departamento.nombre" type="text" placeholder="Aaaa" />
+                <Input defaultValue="" 
+                innerRef={props.refer.nombre}
+                name="nombre" type="text" placeholder="Aaaa" />
             </FormGroup>
             <FormGroup>
                 <label>Código </label>
-                <Input defaultValue="" name="departamento.codigo" type="text" placeholder="Aaaa" />
+                <Input defaultValue=""
+                innerRef={props.refer.codigo}
+                name="codigo" type="text" placeholder="Aaaa" />
+
             </FormGroup>
         </>
     );
@@ -68,7 +77,9 @@ const SelectDepartamento = (props) => {
     return (
         <>
             <label>departamento</label>
-            <CustomInput type="select" name="idDepartamento">
+            <CustomInput type="select" 
+            innerRef={props.refer.idDepartamento}
+            name="idDepartamento">
                 <option value=""> Seleccione </option>
                 {props.listIdDepartamento.map(item =>
                     <option value={item.id}>{item.nombre}</option>

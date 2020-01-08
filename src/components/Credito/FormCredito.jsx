@@ -24,6 +24,17 @@ class FormCredito extends React.Component {
             estado: [],
             tipoCredito: [],
         };
+        this.data = {
+            
+            monto: null,
+            fecha: null,
+            cobro: null,
+            idEmpleado: null,
+            idPolitica: null,
+            estado: null,
+            idCliente: null,
+            tipoCredito: null
+        };
     }
     componentDidMount() {
         fetch("http://localhost:4000/api/credito/enum")
@@ -47,7 +58,7 @@ class FormCredito extends React.Component {
 
     }
     render() {
-        const { mostrar, opc } = this.state;
+        const { mostrar, opc } = this.props;
         return (
             <>
 
@@ -72,19 +83,25 @@ class FormCredito extends React.Component {
                                 <Col className="pr-1" md="4">
                                     <label>Monto</label>
                                     <FormGroup>
-                                        <Input type="text" name="monto" placeholder="##.##" />
+                                        <Input type="text" name="monto"
+                                        innerRef={this.data.monto}
+                                        placeholder="##.##" />
                                     </FormGroup>
                                 </Col>
                                 <Col className="pr-1" md="4">
                                     <label>Fecha</label>
                                     <FormGroup>
-                                        <Input type="date" name="fecha" />
+                                        <Input type="date"
+                                        innerRef={this.data.fecha}
+                                        name="fecha" />
                                     </FormGroup>
                                 </Col>
                                 <Col className="pr-1" md="4">
                                     <label>Cuota de cobro</label>
                                     <FormGroup>
-                                        <Input type="text" name="cuota" placeholder="##.##" />
+                                        <Input type="text" 
+                                        innerRef={this.data.cuota}
+                                        name="cuota" placeholder="##.##" />
                                     </FormGroup>
                                 </Col>
                             </Row>
@@ -92,7 +109,9 @@ class FormCredito extends React.Component {
                                 <Col className="pr-1" md="4">
                                     <label>Estado</label>
                                     <FormGroup>
-                                        <CustomInput type="select" name="estado">
+                                        <CustomInput type="select" 
+                                        innerRef={this.data.estado}
+                                        name="estado">
                                             <option value="">Seleccione ...</option>
                                             {this.state.estado.map(item => (
                                                 <option value={item}>{item}</option>
@@ -104,7 +123,9 @@ class FormCredito extends React.Component {
                                 <Col className="pr-1" md="4">
                                     <label>Tipo de crédito</label>
                                     <FormGroup>
-                                        <CustomInput type="select" name="tipoCredito">
+                                        <CustomInput type="select"
+                                        innerRef={this.data.tipoCredito}
+                                        name="tipoCredito">
                                             <option value="">Seleccione ...</option>
                                             {this.state.tipoCredito.map(item => (
                                                 <option value={item}>{item}</option>
@@ -117,7 +138,7 @@ class FormCredito extends React.Component {
                             <div>Obtener el empleado de la session</div>
                             <div>Seleccionar cliente (DUI) ... VERIFICAR QUE SUS CREDITOS ESTEN CANCELADOS o agregar nuevo</div>
                             <div>Seleccionar fiador (DUI) VERIFICAR QUE NO SEA FIADOR EN UN CREDITO QUE ESTA EN COBRO o agregar nuevo</div>
-
+                            <div>¿Cómo se va a cargar la garantía?</div>
                         </Form>
                     </CardBody>
                 </Card>

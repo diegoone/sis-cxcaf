@@ -17,12 +17,12 @@ import {
 } from "reactstrap";
 import { ElementsPersona } from "components/Persona/FormPersona";
 
-function ElementsFiador({ mostrar, opc }) {
+function ElementsFiador(props) {
     return (
         <>
             <hr className="border"></hr>
             <h4 className="offset-1">Datos del Fiador</h4>
-            <ElementsPersona mostrar={mostrar} opc={opc} />
+            <ElementsPersona />
         </>
     );
 }

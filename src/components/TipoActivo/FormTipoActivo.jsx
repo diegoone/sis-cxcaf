@@ -17,11 +17,14 @@ import {
 class FormTipoActivo extends React.Component {
     constructor(props) {
         super(props);
+        this.data = {
+            nombre: null,
+            codigo: null
+        };
     }
     render() {
         const ModalTipoActivo = (props) => {
             const {
-                buttonLabel,
                 className
             } = props;
             const [modal, setModal] = useState(false);
@@ -33,7 +36,7 @@ class FormTipoActivo extends React.Component {
                         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
                         <ModalBody>
                             <Form onSubmit={this.handleSubmit}>
-                                <ElementsTipoActivo />
+                                <ElementsTipoActivo refer={props.refer} />
                             </Form>
                         </ModalBody>
                         <ModalFooter>
@@ -46,7 +49,7 @@ class FormTipoActivo extends React.Component {
         }
 
         return (
-            <ModalTipoActivo buttonLabel="abrir" />
+            <ModalTipoActivo refer={this.data} />
         );
     }
 
@@ -56,11 +59,15 @@ function ElementsTipoActivo(props) {
         <>
             <FormGroup>
                 <label>Nueva tipo activo </label>
-                <Input defaultValue="" name="tipoActivo.nombre" type="text" placeholder="Aaaa" />
+                <Input defaultValue=""
+                innerRef={props.refer.nombre}
+                name="nombre" type="text" placeholder="Aaaa" />
             </FormGroup>
             <FormGroup>
                 <label>Código </label>
-                <Input defaultValue="" name="tipoActivo.codigo" type="text" placeholder="Aaaa" />
+                <Input defaultValue=""
+                innerRef={props.refer.nombre}
+                name="codigo" type="text" placeholder="Aaaa" />
             </FormGroup>
 
 
@@ -72,7 +79,9 @@ const SelectTipoActivo = (props) => {
     return (
         <>
             <label>Tipo activo</label>
-            <CustomInput type="select" name="idTipoActivo">
+            <CustomInput type="select"
+            innerRef={props.refer.idTipoActivoFijo}
+            name="idTipoActivo">
                 <option value=""> Seleccione </option>
                 {props.listIdTipoActivo.map(item =>
                     <option value={item.id}>{item.nombre}</option>

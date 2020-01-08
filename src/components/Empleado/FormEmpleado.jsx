@@ -129,8 +129,7 @@ class FormEmpleado extends React.Component {
                                 estadoCivil={this.state.estadoCivil}
                                 listIdProfesion={this.state.listIdProfesion}
                                 refer={this.data}
-                                mostrar={mostrar}
-                                opc={opc} />
+                                 />
                         </Form>
                     </CardBody>
                 </Card>
@@ -154,15 +153,16 @@ function ElementsEmpleado(props) {
                     zona={props.zona}
                     estadoCivil={props.estadoCivil}
                     listIdProfesion={props.listIdProfesion}
-                    mostrar={mostrar}
-                    opc={opc} />
+                     />
                 <hr />
                 <Row>
                     <Col className="pr-1" md="4">
                         <FormGroup>
                             <label>Cargo</label>
                             <FormGroup>
-                                <CustomInput type="select" name="cargo" innerRef={props.refer.cargo} name="estadoCivil">
+                                <CustomInput type="select"
+                                innerRef={props.refer.cargo}
+                                name="cargo" innerRef={props.refer.cargo} name="estadoCivil">
                                     <option value="">Seleccione...</option>
                                     {props.cargo.map(item => (
                                         <option value={item}>{item}</option>
@@ -174,7 +174,7 @@ function ElementsEmpleado(props) {
                         </FormGroup>
                     </Col>
                 </Row>
-                <ElementsUsuario mostrar={mostrar} opc={opc} />
+                <ElementsUsuario/>
                 <Row>
                     <div className="update ml-auto mr-auto">
                         <Button
@@ -193,7 +193,6 @@ function ElementsEmpleado(props) {
 }
 
 function SelectEmpleado(props) {
-    const { mostrar, opc } = props;
     return (
         <Col className="pr-1" md="4">
             <label>Empleado</label>

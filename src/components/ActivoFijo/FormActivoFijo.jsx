@@ -25,6 +25,19 @@ class FormActivoFijo extends React.Component {
             listIdDepartamento: [],
             listIdTipoActivo: [],
         };
+        this.data = {
+            id: null,
+            nombre: null,
+            idEmpleado: null,
+            descripcion: null,
+            procedencia: null,
+            precio: null,
+            idDepartamento: null,
+            idTipo: null,
+            idMarca: null,
+            idSucursal: null,
+            fechaAdquisicion: null
+        };
     }
     componentDidMount() {
         fetch("http://localhost:4000/api/sucursal/")
@@ -113,33 +126,33 @@ class FormActivoFijo extends React.Component {
                     <CardBody>
                         <Form>
                             <div>
-                                <ElementsActivoFijo />
+                                <ElementsActivoFijo refer={this.data} />
                             </div>
                             <div>
-                                <SelectEmpleado />
+                                <SelectEmpleado refer={this.data} />
                             </div>
                             <Row>
                                 <Col className='pr-1' md='4'>
                                     <FormGroup>
-                                        <SelectMarca listIdMarca={this.state.listIdMarca} />
+                                        <SelectMarca refer={this.data} listIdMarca={this.state.listIdMarca} />
                                         <FormMarca />
                                     </FormGroup>
                                 </Col>
                                 <Col className='pr-1' md='4'>
-                                     <FormGroup>
-                                        <SelectSucursal listIdSucursal={this.state.listIdSucursal} />
+                                    <FormGroup>
+                                        <SelectSucursal refer={this.data} listIdSucursal={this.state.listIdSucursal} />
                                         <FormSucursal />
-                                    </FormGroup> 
+                                    </FormGroup>
                                 </Col>
                                 <Col className='pr-1' md='4'>
                                     <FormGroup>
-                                        <SelectDepartamento listIdDepartamento={this.state.listIdDepartamento} />
+                                        <SelectDepartamento refer={this.data} listIdDepartamento={this.state.listIdDepartamento} />
                                         <FormDepartamento />
                                     </FormGroup>
                                 </Col>
                                 <Col className='pr-1' md='4'>
                                     <FormGroup>
-                                        <SelectTipoActivo listIdTipoActivo={this.state.listIdTipoActivo}/>
+                                        <SelectTipoActivo refer={this.data} listIdTipoActivo={this.state.listIdTipoActivo} />
                                         <FormTipoActivo />
                                     </FormGroup>
                                 </Col>
@@ -152,20 +165,23 @@ class FormActivoFijo extends React.Component {
     }
 }
 
-function ElementsActivoFijo({ mostrar, opc }) {
+function ElementsActivoFijo(props) {
     return (
         <>
             <Row>
                 <Col className="pr-1" md="4">
                     <label>Nombre</label>
                     <FormGroup>
-                        <Input defaultValue="" name="nombre" placeholder="Aa" />
+                        <Input defaultValue=""
+                        innerRef={props.refer.nombre}
+                        name="nombre" placeholder="Aa" />
                     </FormGroup>
                 </Col>
                 <Col className="pr-1" md="6">
                     <label>Descripción</label>
                     <FormGroup>
-                        <textarea name="descripcion" cols="30" rows="10" className="form-control"></textarea>
+                        <Input type="textarea" innerRef={props.refer.descripcion} 
+                        name="descripcion" cols="30" rows="10" className="form-control"/>
                     </FormGroup>
                 </Col>
             </Row>
@@ -174,7 +190,8 @@ function ElementsActivoFijo({ mostrar, opc }) {
 
                     <label>Procedencia:</label>
                     <FormGroup>
-                        <CustomInput type="select" name="procedencia">
+                        <CustomInput innerRef={props.refer.procedencia} 
+                        type="select" name="procedencia">
                             <option value=""> Seleccione </option>
                             <option value="NUEVO">NUEVO</option>
                             <option value="USADO">USADO</option>
@@ -187,14 +204,18 @@ function ElementsActivoFijo({ mostrar, opc }) {
 
                     <label>Precio:</label>
                     <FormGroup>
-                        <Input name="precio" type="text" placeholder="###.##" />
+                        <Input 
+                        innerRef={props.refer.precio}
+                        name="precio" type="text" placeholder="###.##" />
                     </FormGroup>
                 </Col>
                 <Col className="pr-1" md="4">
 
                     <label>Fecha de adquisición:</label>
                     <FormGroup>
-                        <Input name="fechaAdquisicion" type="date" placeholder="###.##" />
+                        <Input name="fechaAdquisicion"
+                        innerRef={props.refer.fechaAdquisicion}
+                        type="date" placeholder="###.##" />
                     </FormGroup>
                 </Col>
             </Row>

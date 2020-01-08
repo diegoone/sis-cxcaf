@@ -132,8 +132,7 @@ class FormCliente extends React.Component {
                                 tipo={this.state.tipo}
                                 listIdProfesion={this.state.listIdProfesion}
                                 refer={this.data}
-                                mostrar={mostrar}
-                                opc={opc} />
+                                />
                         </Form>
                     </CardBody>
                 </Card>
@@ -144,7 +143,6 @@ class FormCliente extends React.Component {
 
 function ElementsCliente(props) {
     console.log(props);
-    const { mostrar, opc } = props;
     return (
         <>
             <ElementsPersona
@@ -154,7 +152,7 @@ function ElementsCliente(props) {
                 estadoCivil={props.estadoCivil}
                 listIdProfesion={props.listIdProfesion}
                 refer={props.refer}
-                mostrar={mostrar} opc={opc} />
+                 />
             <hr />
             <Row>
                 <Col className="pr-1" md="4">

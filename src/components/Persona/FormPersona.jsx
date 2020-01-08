@@ -114,7 +114,9 @@ function ElementsPersona(props) {
             <Row>
                 <Col className='pr-1' md='4'>
                     <FormGroup>
-                        <SelectProfesion listIdProfesion={props.listIdProfesion}/>
+                        <SelectProfesion
+                        refer={props.refer}
+                        listIdProfesion={props.listIdProfesion}/>
                         <FormProfesion />
                     </FormGroup>
                 </Col>

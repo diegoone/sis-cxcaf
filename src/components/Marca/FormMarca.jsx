@@ -54,7 +54,7 @@ class FormMarca extends React.Component {
                         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
                         <ModalBody>
                             <Form onSubmit={this.handleSubmit}>
-                                <ElementsMarca />
+                                <ElementsMarca refer={props.refer}/>
                             </Form>
                         </ModalBody>
                         <ModalFooter>
@@ -67,7 +67,7 @@ class FormMarca extends React.Component {
         }
 
         return (
-            <ModalMarca buttonLabel="abrir" />
+            <ModalMarca refer={this.data}/>
         );
     }
 }
@@ -75,12 +75,14 @@ class FormMarca extends React.Component {
 
 
 
-function ElementsMarca() {
+function ElementsMarca(props) {
     return (
         <>
             <FormGroup>
                 <label>Nueva marca </label>
-                <Input defaultValue="" name="marca.nombre" type="text" placeholder="Aaaa" />
+                <Input defaultValue="" 
+                innerRef={props.refer.nombre}
+                name="nombre" type="text" placeholder="Aaaa" />
             </FormGroup>
         </>
     );
@@ -90,7 +92,7 @@ const SelectMarca = (props) => {
     return (
         <>
             <label>Marca</label>
-            <CustomInput type="select" name="idMarca">
+            <CustomInput type="select" ref={props.refer.idMarca} name="idMarca">
                 <option value=""> Seleccione </option>
                 {props.listIdMarca.map(item =>
                     <option value={item.id}>{item.nombre}</option>

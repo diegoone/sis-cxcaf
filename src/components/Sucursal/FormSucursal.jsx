@@ -17,11 +17,14 @@ import {
 class FormSucursal extends React.Component {
     constructor(props) {
         super(props);
+        this.data = {
+            nombre: null,
+            codigo: null
+        };
     }
     render() {
         const ModalSucursal = (props) => {
             const {
-                buttonLabel,
                 className
             } = props;
             const [modal, setModal] = useState(false);
@@ -33,7 +36,7 @@ class FormSucursal extends React.Component {
                         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
                         <ModalBody>
                             <Form onSubmit={this.handleSubmit}>
-                                <ElementsSucursal />
+                                <ElementsSucursal refer={props.refer} />
                             </Form>
                         </ModalBody>
                         <ModalFooter>
@@ -46,7 +49,7 @@ class FormSucursal extends React.Component {
         }
 
         return (
-            <ModalSucursal buttonLabel="abrir" />
+            <ModalSucursal refer={this.data}/>
         );
     }
 }
@@ -55,11 +58,15 @@ function ElementsSucursal(props) {
         <>
             <FormGroup>
                 <label>Nueva sucursal </label>
-                <Input defaultValue="" name="sucursal.nombre" type="text" placeholder="Aaaa" />
+                <Input defaultValue=""
+                innerRef={props.refer.nombre}
+                name="nombre" type="text" placeholder="Aaaa" />
             </FormGroup>
             <FormGroup>
                 <label>Código </label>
-                <Input defaultValue="" name="sucursal.codigo" type="text" placeholder="Aaaa" />
+                <Input defaultValue=""
+                innerRef={props.refer.codigo}
+                name="codigo" type="text" placeholder="Aaaa" />
             </FormGroup>
         </>
     );
@@ -68,7 +75,9 @@ const SelectSucursal = (props) => {
     return (
         <>
             <label>Sucursal</label>
-            <CustomInput type="select" name="idSucursal">
+            <CustomInput type="select"
+            innerRef={props.refer.idSucursal}
+            name="idSucursal">
                 <option value=""> Seleccione </option>
                 {props.listIdSucursal.map(item =>
                     <option value={item.id}>{item.nombre}</option>
