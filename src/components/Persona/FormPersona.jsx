@@ -12,7 +12,6 @@ import {
 
 function ElementsPersona(props) {
 
-    const { mostrar, opc } = props;
     return (
         <>
             <Row>

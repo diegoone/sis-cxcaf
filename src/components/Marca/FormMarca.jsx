@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CaptureForm, CreateReferencies, urlApi } from "Utils/FormUtil";
 import "../../assets/css/paper-dashboard.css";
 import {
     FormGroup,
@@ -20,29 +21,33 @@ class FormMarca extends React.Component {
         this.data = {
             nombre: null,
         };
-        for (var prop in this.data) {
-            if (Object.prototype.hasOwnProperty.call(this.data, prop)) {
-                this.data[prop] = React.createRef();
-            }
-        }
+        CreateReferencies(this.data);
+
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleUpdate = this.handleUpdate.bind(this);
+    }
+    handleUpdate(data) {
+        this.props.handleUpdate && this.props.handleUpdate(data.id);
     }
     handleSubmit(event) {
         event.preventDefault();
-        var obj = {};
-        for (var prop in this.data) {
-            if (Object.prototype.hasOwnProperty.call(this.data, prop)) {
-                console.log(prop, this.data[prop].current);
-                obj[prop] = this.state[prop].current.value;
-            }
-        }
+        var obj = CaptureForm(this.data);
+        alert(JSON.stringify(obj));
+        var init = {
+            method: 'post',
+            body: JSON.stringify(obj),
+            headers: { 'Content-Type': 'application/json' }
+        };
+        fetch(urlApi + '/marca', init)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(this.handleUpdate);
 
-        console.log(this.data);
     }
     render() {
         const ModalMarca = (props) => {
             const {
-                buttonLabel,
                 className
             } = props;
             const [modal, setModal] = useState(false);
@@ -54,7 +59,7 @@ class FormMarca extends React.Component {
                         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
                         <ModalBody>
                             <Form onSubmit={this.handleSubmit}>
-                                <ElementsMarca refer={props.refer}/>
+                                <ElementsMarca refer={props.refer} />
                             </Form>
                         </ModalBody>
                         <ModalFooter>
@@ -67,7 +72,7 @@ class FormMarca extends React.Component {
         }
 
         return (
-            <ModalMarca refer={this.data}/>
+            <ModalMarca refer={this.data} />
         );
     }
 }
@@ -80,9 +85,9 @@ function ElementsMarca(props) {
         <>
             <FormGroup>
                 <label>Nueva marca </label>
-                <Input defaultValue="" 
-                innerRef={props.refer.nombre}
-                name="nombre" type="text" placeholder="Aaaa" />
+                <Input defaultValue=""
+                    innerRef={props.refer.nombre}
+                    name="nombre" type="text" placeholder="Aaaa" />
             </FormGroup>
         </>
     );
