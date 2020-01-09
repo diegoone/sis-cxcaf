@@ -32,7 +32,6 @@ class FormMarca extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         var obj = CaptureForm(this.data);
-        alert(JSON.stringify(obj));
         var init = {
             method: 'post',
             body: JSON.stringify(obj),
@@ -56,16 +55,17 @@ class FormMarca extends React.Component {
                 <>
                     <Button color="danger" onClick={toggle}>Crear<i className='fas fa-plus'></i></Button>
                     <Modal isOpen={modal} toggle={toggle} className={className}>
-                        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-                        <ModalBody>
-                            <Form onSubmit={this.handleSubmit}>
+                        <Form onSubmit={this.handleSubmit}>
+                            <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                            <ModalBody>
                                 <ElementsMarca refer={props.refer} />
-                            </Form>
-                        </ModalBody>
-                        <ModalFooter>
-                            <Button color="primary" onClick={toggle}>Guardar</Button>{' '}
-                            <Button color="secondary" onClick={toggle}>Cancelar</Button>
-                        </ModalFooter>
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button color="primary" type='submit'>}Guardar</Button>{' '}
+                                <Button color="secondary" onClick={toggle}>Cancelar</Button>
+                            </ModalFooter>
+                        </Form>
+
                     </Modal>
                 </>
             );
