@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import "../../assets/css/paper-dashboard.css";
 import {
     Card,
@@ -10,64 +11,96 @@ import {
     Col
 } from "reactstrap";
 
-function ListaEmpleado({mostrar, opc}) {
-    return (
-        <>
-            <Card className="card-user">
-                <CardHeader>
-                    <Row>
-                        <Col md="1">
-                            <div className="icon-big text-center icon-success mt-3">
-                                <i className="nc-icon nc-minimal-left puntero" onClick={()=>{
-                                    mostrar(opc);
-                                }}/>
-                            </div>
-                        </Col>
-                        <Col>
-                            <CardTitle tag="h5">Listado de Empleados</CardTitle>
-                        </Col>
-                    </Row>
-                </CardHeader>
-                <CardBody>
-                    <Row>
-                        <Col md="12">
-                            <Card>
-                                <CardBody>
-                                    <Table responsive>
-                                        <thead className="text-primary">
-                                            <tr>
-                                                <th>Nombre</th>
-                                                <th>DUI</th>
-                                                <th>NIT</th>
-                                                <th>Fecha de Nacimiento</th>
-                                                <th>Cargo</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Diego Antonio Palacios Menjivar</td>
-                                                <td>12345678-1</td>
-                                                <td>1234-123456-123-1</td>
-                                                <td>07/10/1996</td>
-                                                <td>Vendedor</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Kevin Eduardo Portillo Durán</td>
-                                                <td>12345678-1</td>
-                                                <td>1234-123456-123-1</td>
-                                                <td>07/10/1996</td>
-                                                <td>Vendedor</td>
-                                            </tr>
-                                        </tbody>
-                                    </Table>
-                                </CardBody>
-                            </Card>
-                        </Col>
-                    </Row>
-                </CardBody>
-            </Card>
-        </>
-    );
+class ListaEmpleado extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            error: null,
+            isLoaded: false,
+            items: []
+        };
+    }
+    componentDidMount() {
+        fetch("http://localhost:4000/api/empleado")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        items: result
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+    }
+    render() {
+        const { error, isLoaded, items } = this.state;
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!isLoaded) {
+            return <div>Loading...</div>;
+        } else {
+            console.log(items);
+            return (
+                <>
+                    <Card className="card-user">
+                        <CardHeader>
+                            <Row>
+                                <Col md="1">
+                                    <div className="icon-big text-center icon-success mt-3">
+                                        <i className="nc-icon nc-minimal-left puntero" onClick={() => {
+                                            this.props.mostrar(this.props.opc);
+                                        }} />
+                                    </div>
+                                </Col>
+                                <Col>
+                                    <CardTitle tag="h5">Listado de Empleados</CardTitle>
+                                </Col>
+                            </Row>
+                        </CardHeader>
+                        <CardBody>
+                            <Row>
+                                <Col md="12">
+                                    <Card>
+                                        <CardBody>
+                                            <Table responsive>
+                                                <thead className="text-primary">
+                                                    <tr>
+                                                        <th>Nombre</th>
+                                                        <th>DUI</th>
+                                                        <th>NIT</th>
+                                                        <th>Fecha de Nacimiento</th>
+                                                        <th>Cargo</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {items.map(empleado => (
+                                                        <tr key={empleado.id}>
+                                                            <td>{`${empleado.persona.nombres} ${empleado.persona.apellidos}`}</td>
+                                                            <td>{empleado.persona.dui}</td>
+                                                            <td>{empleado.persona.nit}</td>
+                                                            <td>{empleado.persona.fechaN}</td>
+                                                            <td>{empleado.cargo}</td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </Table>
+                                        </CardBody>
+                                    </Card>
+                                </Col>
+                            </Row>
+                        </CardBody>
+                    </Card>
+                </>
+            );
+        }
+
+    }
 }
 
 export default ListaEmpleado;
