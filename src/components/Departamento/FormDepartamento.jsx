@@ -31,10 +31,8 @@ class FormDepartamento extends React.Component {
     }
 
     handleSubmit(event) {
-        alert('a');
         event.preventDefault();
         var obj = CaptureForm(this.data);
-        alert(JSON.stringify(obj));
         var init = {
             method: 'post',
             body: JSON.stringify(obj),
@@ -58,16 +56,16 @@ class FormDepartamento extends React.Component {
                 <>
                     <Button color="danger" onClick={toggle}>Crear<i className='fas fa-plus'></i></Button>
                     <Modal isOpen={modal} toggle={toggle} className={className}>
-                        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-                        <ModalBody>
-                            <Form onSubmit={this.handleSubmit}>
+                        <Form onSubmit={this.handleSubmit}>
+                            <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                            <ModalBody>
                                 <ElementsDepartamento refer={props.refer} />
-                            </Form>
-                        </ModalBody>
-                        <ModalFooter>
-                            <Button type="submit" color="primary">Guardar</Button>{' '}
-                            <Button color="secondary" onClick={toggle}>Cancelar</Button>
-                        </ModalFooter>
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button type="submit" color="primary">Guardar</Button>{' '}
+                                <Button color="secondary" onClick={toggle}>Cancelar</Button>
+                            </ModalFooter>
+                        </Form>
                     </Modal>
                 </>
             );
@@ -101,17 +99,15 @@ function ElementsDepartamento(props) {
 const SelectDepartamento = (props) => {
     return (
         <>
-            <FormGroup>
-                <label>departamento</label>
-                <CustomInput type="select"
-                    innerRef={props.refer.idDepartamento}
-                    name="idDepartamento">
-                    <option value=""> Seleccione </option>
-                    {props.listIdDepartamento.map(item =>
-                        <option value={item.id}>{item.nombre}</option>
-                    )}
-                </CustomInput>
-            </FormGroup>
+            <label>departamento</label>
+            <CustomInput type="select"
+                innerRef={props.refer.idDepartamento}
+                name="idDepartamento">
+                <option value=""> Seleccione </option>
+                {props.listIdDepartamento.map(item =>
+                    <option value={item.id}>{item.nombre}</option>
+                )}
+            </CustomInput>
         </>
     );
 
