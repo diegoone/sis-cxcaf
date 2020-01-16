@@ -1,6 +1,6 @@
 import React from "react";
-import axios from "axios";
 import "../../assets/css/paper-dashboard.css";
+import ModalEmpleado from "./ModalEmpleado";
 import {
     Card,
     CardHeader,
@@ -76,6 +76,7 @@ class ListaEmpleado extends React.Component {
                                                         <th>NIT</th>
                                                         <th>Fecha de Nacimiento</th>
                                                         <th>Cargo</th>
+                                                        <th>Detalles</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -86,6 +87,9 @@ class ListaEmpleado extends React.Component {
                                                             <td>{empleado.persona.nit}</td>
                                                             <td>{empleado.persona.fechaN}</td>
                                                             <td>{empleado.cargo}</td>
+                                                            <td>
+                                                                <ModalEmpleado buttonLabel="Ver Más" empleado={empleado} ></ModalEmpleado>
+                                                            </td>
                                                         </tr>
                                                     ))}
                                                 </tbody>

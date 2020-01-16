@@ -14,11 +14,11 @@ import {
     CustomInput
 } from 'reactstrap';
 
-const ModalCliente = (props) => {
+const ModalEmpleado = (props) => {
     const {
         buttonLabel,
         className,
-        cliente
+        empleado
     } = props;
 
     const [modal, setModal] = useState(false);
@@ -29,20 +29,20 @@ const ModalCliente = (props) => {
         <div>
             <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
             <Modal isOpen={modal} toggle={toggle} className={className}>
-                <ModalHeader toggle={toggle}>Datos de Cliente</ModalHeader>
+                <ModalHeader toggle={toggle}>Datos de Empleado</ModalHeader>
                 <ModalBody>
                     <Form>
                         <Row form>
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="nombres">Nombres</Label>
-                                    <Input type="text" name="nombres" id="nombres" value={cliente.persona.nombres} disabled/>
+                                    <Input type="text" name="nombres" id="nombres" value={empleado.persona.nombres} disabled/>
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="apellidos">Apellidos</Label>
-                                    <Input type="text" name="apellidos" id="apellidos" value={cliente.persona.apellidos} disabled/>
+                                    <Input type="text" name="apellidos" id="apellidos" value={empleado.persona.apellidos} disabled/>
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -50,13 +50,13 @@ const ModalCliente = (props) => {
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="dui">DUI</Label>
-                                    <Input type="text" name="dui" id="dui" value={cliente.persona.dui} disabled/>
+                                    <Input type="text" name="dui" id="dui" value={empleado.persona.dui} disabled/>
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="genero">Genero</Label>
-                                    <Genero genero={cliente.persona.genero}/>
+                                    <Genero genero={empleado.persona.genero}/>
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -64,27 +64,26 @@ const ModalCliente = (props) => {
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="profesion">Profesion</Label>
-                                    <Input type="text" name="profesion" id="profesion" value={cliente.persona.profesion.nombre} disabled/>
+                                    <Input type="text" name="profesion" id="profesion" value={empleado.persona.profesion.nombre} disabled/>
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="salario">Salario</Label>
-                                    <Input type="text" name="salario" id="salario" value={cliente.persona.salario} disabled/>
+                                    <Input type="text" name="salario" id="salario" value={empleado.persona.salario} disabled/>
                                 </FormGroup>
                             </Col>
                         </Row>
                         <Row form>
                             <Col md={6}>
                                 <FormGroup>
-                                    <Label >Clasificasión : {cliente.clasificacion}</Label>
-                                    <Label >Tipo : {cliente.tipo}</Label>
+                                    <Label >Cargo : {empleado.cargo}</Label>
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="nit">Nit</Label>
-                                    <Input type="text" name="nit" id="nit" value={cliente.persona.nit} disabled/>
+                                    <Input type="text" name="nit" id="nit" value={empleado.persona.nit} disabled/>
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -92,13 +91,13 @@ const ModalCliente = (props) => {
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="fechaN">Fecha de Nacimiento</Label>
-                                    <Input type="date" name="fechaN" id="fechaN" value={cliente.persona.fechaN} disabled/>
+                                    <Input type="date" name="fechaN" id="fechaN" value={empleado.persona.fechaN} disabled/>
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="zona">Zona</Label>
-                                    <Input type="text" name="zona" id="zona" value={cliente.persona.zona} disabled/>
+                                    <Input type="text" name="zona" id="zona" value={empleado.persona.zona} disabled/>
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -106,13 +105,13 @@ const ModalCliente = (props) => {
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="username">Usuario</Label>
-                                    <Input type="date" name="username" id="username" value={cliente.persona.usuario.username} disabled/>
+                                    <Input type="date" name="username" id="username" value={empleado.persona.usuario.username} disabled/>
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="estadoCivil">EstadoCivil</Label>
-                                    <Input type="text" name="estadoCivil" id="estadoCivil" value={cliente.persona.estadoCivil} disabled/>
+                                    <Input type="text" name="estadoCivil" id="estadoCivil" value={empleado.persona.estadoCivil} disabled/>
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -120,7 +119,7 @@ const ModalCliente = (props) => {
                             <Col md={12}>
                                 <FormGroup>
                                     <Label for="direccion">Dirección</Label>
-                                    <Input type="textarea" name="direccion" id="direccion" value={cliente.persona.direccion} disabled/>
+                                    <Input type="textarea" name="direccion" id="direccion" value={empleado.persona.direccion} disabled/>
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -152,4 +151,4 @@ const Genero = ({genero}) =>{
     }
 }
 
-export default ModalCliente;
+export default ModalEmpleado;

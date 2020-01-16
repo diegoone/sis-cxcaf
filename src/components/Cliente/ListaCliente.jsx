@@ -1,5 +1,6 @@
 import React from "react";
 import "../../assets/css/paper-dashboard.css";
+import ModalCliente from "./ModalCliente";
 import {
     Card,
     CardHeader,
@@ -74,7 +75,7 @@ class ListaCliente extends React.Component {
                                                         <th>NIT</th>
                                                         <th>Fecha de Nacimiento</th>
                                                         <th>Telèfono</th>
-                                                        <th>Ver màs</th>
+                                                        <th>Detalles</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -85,7 +86,7 @@ class ListaCliente extends React.Component {
                                                             <td>{cliente.persona.nit}</td>
                                                             <td>{cliente.persona.fechaN}</td>
                                                             <td>{cliente.persona.telefono}</td>
-                                                            <td><button className="btn btn-outline-info"><i class="fas fa-money-check"></i></button></td>
+                                                            <ModalCliente buttonLabel="Ver Más" cliente={cliente} ></ModalCliente>
                                                         </tr>
                                                     ))}
                                                 </tbody>
