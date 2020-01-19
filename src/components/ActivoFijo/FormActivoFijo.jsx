@@ -38,12 +38,38 @@ class FormActivoFijo extends React.Component {
             idSucursal: null,
             fechaAdquisicion: null
         };
+CreateReferencies(this.data);
+
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleUpdate = this.handleUpdate.bind(this);
+
+
         this.handleUpdateListMarca = this.handleUpdateListMarca.bind(this);
         this.handleUpdateListSucursal = this.handleUpdateListSucursal.bind(this);
         this.handleUpdateListDepartamento = this.handleUpdateListDepartamento.bind(this);
         this.handleUpdateListTipoActivo = this.handleUpdateListTipoActivo.bind(this);
         
     }
+    handleUpdate(data) {
+        this.props.handleUpdate && this.props.handleUpdate(data.id);
+    }
+    handleSubmit(event) {
+        event.preventDefault();
+        var obj = CaptureForm(this.data);
+        var init = {
+            method: 'post',
+            body: JSON.stringify(obj),
+            headers: { 'Content-Type': 'application/json' }
+        };
+        fetch(urlApi + '/activo_fijo', init)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(this.handleUpdate);
+
+    }
+
     handleUpdateListMarca() {
         fetch(urlApi+"/marca/")
             .then(res => res.json())
@@ -142,7 +168,7 @@ class FormActivoFijo extends React.Component {
                         </Row>
                     </CardHeader>
                     <CardBody>
-                        <Form>
+                        <Form onSubmit={this.handleSubmit}>
                             <div>
                                 <ElementsActivoFijo refer={this.data} />
                             </div>
@@ -174,6 +200,16 @@ class FormActivoFijo extends React.Component {
                                         <FormTipoActivo handleUpdate={this.handleUpdateListTipoActivo}/>
                                     </FormGroup>
                                 </Col>
+                            </Row>
+                              <Row>
+                                <div className="update ml-auto mr-auto">
+                                    <Button
+                                     className="btn-round"
+                                     color="primary"
+                                     type='submit'>
+                                     Registrar Activo Fijo
+                                    </Button>{' '}
+                                </div>
                             </Row>
                         </Form>
                     </CardBody>
