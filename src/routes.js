@@ -9,6 +9,7 @@ import Empleados from "views/Empleados.jsx";
 import Clientes from "views/Clientes.jsx";
 import {ActivoFijo} from "views/ActivoFijo.jsx";
 import Creditos from "views/Creditos.jsx";
+import { Couta } from "views/Cuota";
 var routes = [
   {
     path: "/dashboard",
@@ -46,7 +47,15 @@ var routes = [
     component: ActivoFijo,
     layout: "/admin"
   },
- 
+
+  {
+    path: "/couta",
+    name: "Coutas",
+    icon: "nc-icon nc-single-copy-04",
+    component: Couta,
+    layout: "/admin"
+  },
+
   {
     path: "/icons",
     name: "Iconos",

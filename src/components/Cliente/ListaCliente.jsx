@@ -17,7 +17,8 @@ class ListaCliente extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            items: []
+            items: [],
+            enums: {}
         };
     }
     componentDidMount() {
@@ -37,9 +38,25 @@ class ListaCliente extends React.Component {
                     });
                 }
             )
+            fetch("http://localhost:4000/api/cliente/enum")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        enums: result
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
     }
     render() {
-        const { error, isLoaded, items } = this.state;
+        const { error, isLoaded, items, enums } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -86,7 +103,9 @@ class ListaCliente extends React.Component {
                                                             <td>{cliente.persona.nit}</td>
                                                             <td>{cliente.persona.fechaN}</td>
                                                             <td>{cliente.persona.telefono}</td>
-                                                            <ModalCliente buttonLabel="Ver Más" cliente={cliente} ></ModalCliente>
+                                                            <td>
+                                                                <ModalCliente buttonLabel="Ver Más" cliente={cliente} enums={enums}></ModalCliente>
+                                                            </td>
                                                         </tr>
                                                     ))}
                                                 </tbody>

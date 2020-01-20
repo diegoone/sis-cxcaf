@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { EnumsRadio } from "../Enums/EnumsRadio";
+import { EnumsSelect } from "../Enums/EnumsSelect";
 import {
     Button,
     Modal,
@@ -11,14 +13,14 @@ import {
     FormGroup,
     Label,
     Input,
-    CustomInput
 } from 'reactstrap';
 
 const ModalEmpleado = (props) => {
     const {
         buttonLabel,
         className,
-        empleado
+        empleado,
+        enums
     } = props;
 
     const [modal, setModal] = useState(false);
@@ -28,7 +30,7 @@ const ModalEmpleado = (props) => {
     return (
         <div>
             <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
-            <Modal isOpen={modal} toggle={toggle} className={className}>
+            <Modal isOpen={modal} toggle={toggle} className={className} size="xl">
                 <ModalHeader toggle={toggle}>Datos de Empleado</ModalHeader>
                 <ModalBody>
                     <Form>
@@ -55,15 +57,17 @@ const ModalEmpleado = (props) => {
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
-                                    <Label for="genero">Genero</Label>
-                                    <Genero genero={empleado.persona.genero}/>
+                                    <Label for="genero">Genéro</Label>
+                                    <div className="row">
+                                        <EnumsRadio items={enums.genero} item={empleado.persona.genero}/>
+                                    </div>
                                 </FormGroup>
                             </Col>
                         </Row>
                         <Row form>
                             <Col md={6}>
                                 <FormGroup>
-                                    <Label for="profesion">Profesion</Label>
+                                    <Label for="profesion">Profesión</Label>
                                     <Input type="text" name="profesion" id="profesion" value={empleado.persona.profesion.nombre} disabled/>
                                 </FormGroup>
                             </Col>
@@ -77,7 +81,8 @@ const ModalEmpleado = (props) => {
                         <Row form>
                             <Col md={6}>
                                 <FormGroup>
-                                    <Label >Cargo : {empleado.cargo}</Label>
+                                    <Label for="cargo">Cargo</Label>
+                                    <EnumsSelect items={enums.cargo} item={empleado.cargo} id="cargo"/>
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
@@ -97,7 +102,7 @@ const ModalEmpleado = (props) => {
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="zona">Zona</Label>
-                                    <Input type="text" name="zona" id="zona" value={empleado.persona.zona} disabled/>
+                                    <EnumsSelect items={enums.zona} item={empleado.persona.zona} id="zona"/>
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -105,13 +110,13 @@ const ModalEmpleado = (props) => {
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="username">Usuario</Label>
-                                    <Input type="date" name="username" id="username" value={empleado.persona.usuario.username} disabled/>
+                                    <Input type="text" name="username" id="username" value={empleado.persona.usuario.username} disabled/>
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="estadoCivil">EstadoCivil</Label>
-                                    <Input type="text" name="estadoCivil" id="estadoCivil" value={empleado.persona.estadoCivil} disabled/>
+                                    <EnumsSelect items={enums.estadocivil} item={empleado.persona.estadoCivil} id="estadoCivil"/>
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -126,29 +131,12 @@ const ModalEmpleado = (props) => {
                     </Form>
                 </ModalBody>
                 <ModalFooter>
+                    <Button color="warning" onClick={toggle}>Modificar</Button>{' '}
                     <Button color="secondary" onClick={toggle}>Salir</Button>
                 </ModalFooter>
             </Modal>
         </div>
     );
-}
-
-const Genero = ({genero}) =>{
-    if(genero == "masculino"){
-        return (
-            <>
-                <CustomInput type="radio" id="masculino" name="genero" label="masculino" checked disabled/>
-                <CustomInput type="radio" id="femenino" name="genero" label="femenino" disabled/>
-            </>
-        );
-    }else{
-        return (
-            <>
-                <CustomInput type="radio" id="masculino" name="genero" label="masculino" disabled/>
-                <CustomInput type="radio" id="femenino" name="genero" label="femenino" checked disabled/>
-            </>
-        );
-    }
 }
 
 export default ModalEmpleado;

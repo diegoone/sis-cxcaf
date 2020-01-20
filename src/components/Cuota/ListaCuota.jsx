@@ -1,6 +1,5 @@
 import React from "react";
 import "../../assets/css/paper-dashboard.css";
-import ModalEmpleado from "./ModalEmpleado";
 import {
     Card,
     CardHeader,
@@ -11,7 +10,7 @@ import {
     Col
 } from "reactstrap";
 
-class ListaEmpleado extends React.Component {
+class ListaCuota extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,39 +21,9 @@ class ListaEmpleado extends React.Component {
         };
     }
     componentDidMount() {
-        fetch("http://localhost:4000/api/empleado")
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        items: result
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
-            fetch("http://localhost:4000/api/empleado/enum")
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        enums: result
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
+
     }
+
     render() {
         const { error, isLoaded, items, enums } = this.state;
         if (error) {
@@ -75,7 +44,7 @@ class ListaEmpleado extends React.Component {
                                     </div>
                                 </Col>
                                 <Col>
-                                    <CardTitle tag="h5">Listado de Empleados</CardTitle>
+                                    <CardTitle tag="h5">Listado de Coutas</CardTitle>
                                 </Col>
                             </Row>
                         </CardHeader>
@@ -96,18 +65,7 @@ class ListaEmpleado extends React.Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {items.map(empleado => (
-                                                        <tr key={empleado.id}>
-                                                            <td>{`${empleado.persona.nombres} ${empleado.persona.apellidos}`}</td>
-                                                            <td>{empleado.persona.dui}</td>
-                                                            <td>{empleado.persona.nit}</td>
-                                                            <td>{empleado.persona.fechaN}</td>
-                                                            <td>{empleado.cargo}</td>
-                                                            <td>
-                                                                <ModalEmpleado buttonLabel="Ver Más" empleado={empleado} enums={enums}></ModalEmpleado>
-                                                            </td>
-                                                        </tr>
-                                                    ))}
+                                                    
                                                 </tbody>
                                             </Table>
                                         </CardBody>
@@ -119,8 +77,7 @@ class ListaEmpleado extends React.Component {
                 </>
             );
         }
-
     }
 }
 
-export default ListaEmpleado;
+export { ListaCuota };

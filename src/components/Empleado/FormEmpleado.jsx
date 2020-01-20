@@ -139,7 +139,6 @@ class FormEmpleado extends React.Component {
 }
 
 function ElementsEmpleado(props) {
-    const { mostrar, opc } = props;
     const { error, isLoaded, items } = props;
     if (error) {
         return <div>Error: {error.message}</div>;
