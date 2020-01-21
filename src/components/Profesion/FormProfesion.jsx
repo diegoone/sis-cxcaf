@@ -44,7 +44,7 @@ class FormProfesion extends React.Component {
             const toggle = () => setModal(!modal);
             return (
                 <>
-                    <Button color="danger" onClick={toggle}>Crear<i className='fas fa-plus'></i></Button>
+                    <Button color="success" onClick={toggle}>Crear<i className='fas fa-plus'></i></Button>
                     <Modal isOpen={modal} toggle={toggle} className={className}>
                         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
                         <ModalBody>

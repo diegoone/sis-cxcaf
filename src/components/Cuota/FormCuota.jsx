@@ -1,7 +1,6 @@
 import React from "react";
 import "../../assets/css/paper-dashboard.css";
 import {
-    Button,
     Card,
     CardHeader,
     CardBody,
@@ -30,6 +29,11 @@ class FormCuota extends React.Component {
         this.setState({nombres, apellidos, dui, id});
     }
 
+    componentDidUpdate(){
+        //Aqui va a ir la carga y creacion de collapse con todos los pagos a efectuar tanto en mora como libre de esta
+        console.log(this.state.id);
+    }
+
     render() {
         const { mostrar, opc } = this.props;
         return (
@@ -44,7 +48,7 @@ class FormCuota extends React.Component {
                             </div>
                         </Col>
                         <Col>
-                            <CardTitle tag="h5">Registro de Coutas</CardTitle>
+                            <CardTitle tag="h5">Registro de Cuotas</CardTitle>
                         </Col>
                     </Row>
                 </CardHeader>
@@ -63,7 +67,7 @@ class FormCuota extends React.Component {
                                 <ModalSel buttonLabel="Seleccionar Cliente" changeState={this.changeState}/>
                             </Col>
                         </FormGroup>
-                    </Form>        
+                    </Form>
                 </CardBody>
             </Card>
         )

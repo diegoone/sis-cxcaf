@@ -1,7 +1,7 @@
 import React from "react";
 import "../assets/css/paper-dashboard.css";
 import Cbuttom from "../components/Buttons/Cbuttom.jsx";
-import {FormEmpleado} from "../components/Empleado/FormEmpleado.jsx";
+import { ViewEmpleado } from "../components/Empleado/FormEmpleado.jsx";
 import ListaEmpleado from "../components/Empleado/ListaEmpleado.jsx";
 import {
     Row,
@@ -47,7 +47,7 @@ class Empleados extends React.Component{
                         </Row>
                         <Row>
                             <Col lg="12" md="12" sm="12">
-                                <FormEmpleado mostrar={this.toggleOpc} opc={{opc:0}}/>
+                                <ViewEmpleado mostrar={this.toggleOpc} opc={{opc:0}}/>
                             </Col>
                         </Row>
                     </div>

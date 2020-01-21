@@ -9,7 +9,7 @@ const EnumsSelect = ({items, item, id}) =>{
             {
                 items.map(
                     (valor, indice) => {
-                        if(valor == item){
+                        if(valor === item){
                             return <option key={indice} value={valor} selected>{valor}</option>;
                         }else{
                             return <option key={indice} value={valor}>{valor}</option>;
@@ -17,7 +17,7 @@ const EnumsSelect = ({items, item, id}) =>{
                     }
                 )
             }
-        </Input>    
+        </Input>
     );
 }
 
