@@ -97,7 +97,7 @@ const SelectMarca = (props) => {
     return (
         <>
             <label>Marca</label>
-            <CustomInput type="select" ref={props.refer.idMarca} name="idMarca">
+            <CustomInput type="select" innerRef={props.refer.idMarca} name="idMarca">
                 <option value=""> Seleccione </option>
                 {props.listIdMarca.map(item =>
                     <option value={item.id}>{item.nombre}</option>

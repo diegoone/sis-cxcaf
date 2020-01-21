@@ -18,8 +18,10 @@ function CaptureForm(data){
     var obj = {};
     for (var prop in data) {
         if (Object.prototype.hasOwnProperty.call(data, prop)) {
-            //console.log(prop, data[prop].current);
-            obj[prop] = data[prop].current.value;
+            console.log(prop, data[prop].current);
+            if(data[prop].current.value) {
+                obj[prop] = data[prop].current.value;
+            }
         }
     }
     console.log(obj);

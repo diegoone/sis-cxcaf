@@ -26,9 +26,7 @@ class FormActivoFijo extends React.Component {
             listIdTipoActivo: [],
         };
         this.data = {
-            id: null,
             nombre: null,
-            idEmpleado: null,
             descripcion: null,
             procedencia: null,
             precio: null,
@@ -38,12 +36,11 @@ class FormActivoFijo extends React.Component {
             idSucursal: null,
             fechaAdquisicion: null
         };
-CreateReferencies(this.data);
-
+        
+        CreateReferencies(this.data);
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
-
 
         this.handleUpdateListMarca = this.handleUpdateListMarca.bind(this);
         this.handleUpdateListSucursal = this.handleUpdateListSucursal.bind(this);
@@ -62,7 +59,7 @@ CreateReferencies(this.data);
             body: JSON.stringify(obj),
             headers: { 'Content-Type': 'application/json' }
         };
-        fetch(urlApi + '/activo_fijo', init)
+        fetch(urlApi + '/activofijo', init)
             .then(function (response) {
                 return response.json();
             })
@@ -172,9 +169,7 @@ CreateReferencies(this.data);
                             <div>
                                 <ElementsActivoFijo refer={this.data} />
                             </div>
-                            <div>
-                                <SelectEmpleado refer={this.data} />
-                            </div>
+                            
                             <Row>
                                 <Col className='pr-1' md='4'>
                                     <FormGroup>
