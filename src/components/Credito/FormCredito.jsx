@@ -29,7 +29,6 @@ class FormCredito extends React.Component {
             monto: null,
             fecha: null,
             cobro: null,
-            idEmpleado: null,
             idPolitica: null,
             estado: null,
             idCliente: null,
