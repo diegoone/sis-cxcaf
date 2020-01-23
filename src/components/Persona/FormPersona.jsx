@@ -156,8 +156,8 @@ function ElementsPersona(props) {
               name="salario"
               innerRef={props.refer.salario}
               defaultValue=""
-              placeholder=""
-              type="text"
+              placeholder="###.##"
+              type="number"
             />
           </FormGroup>
         </Col>

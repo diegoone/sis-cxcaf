@@ -5,7 +5,7 @@ import {
     Row,
     Col
 } from "reactstrap";
-import {FormCliente} from "components/Cliente/FormCliente";
+import {ViewCliente} from "components/Cliente/FormCliente";
 import ListaCliente from "components/Cliente/ListaCliente";
 
 class Clientes extends React.Component {
@@ -47,7 +47,7 @@ class Clientes extends React.Component {
                         </Row>
                         <Row>
                             <Col lg="12" md="12" sm="12">
-                                <FormCliente mostrar={this.toggleOpc} opc={{opc:0}}/>
+                                <ViewCliente mostrar={this.toggleOpc} opc={{opc:0}}/>
                             </Col>
                         </Row>
                     </div>

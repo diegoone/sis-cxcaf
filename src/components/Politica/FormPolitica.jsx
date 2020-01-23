@@ -38,12 +38,9 @@ class FormPolitica extends React.Component {
     var obj = {};
     for (var prop in this.data) {
       if (Object.prototype.hasOwnProperty.call(this.data, prop)) {
-        console.log(prop, this.data[prop].current);
         obj[prop] = this.state[prop].current.value;
       }
     }
-
-    console.log(this.data);
   }
   render() {
     const ModalPolitica = props => {
@@ -53,7 +50,7 @@ class FormPolitica extends React.Component {
       return (
         <>
           <Button color="success" onClick={toggle}>
-            Crear<i className="fas fa-plus"></i>
+            Crear
           </Button>
           <Modal isOpen={modal} toggle={toggle} className={className}>
             <ModalHeader toggle={toggle}>Registro Politica</ModalHeader>
@@ -177,10 +174,11 @@ const SelectPolitica = props => {
         type="select"
         innerRef={props.refer.idPolitica}
         name="idPolitica"
+        id="idPolitica"
       >
         <option value=""> Seleccione </option>
-        {props.listIdPolitica.map(item => (
-          <option value={item.id}>{item.tasaInteres}</option>
+        {props.listIdPolitica.map((item, indice) => (
+          <option key={indice} value={item.id}>{item.tasaInteres}</option>
         ))}
       </CustomInput>
     </>

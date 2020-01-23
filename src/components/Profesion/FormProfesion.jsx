@@ -86,12 +86,14 @@ const SelectProfesion = (props) => {
     return (
         <>
             <label>Profesión</label>
-            <CustomInput type="select"
+            <CustomInput
+            type="select"
             innerRef={props.refer.idProfesion}
-            name="idProfesion">
+            name="idProfesion"
+            id="idProfesion">
                 <option value=""> Seleccione </option>
-                {props.listIdProfesion.map(item => (
-                    <option value={item.id}>{item.nombre}</option>
+                {props.listIdProfesion.map((item, indice) => (
+                    <option key={indice} value={item.id}>{item.nombre}</option>
                 )
                 )}
             </CustomInput>
